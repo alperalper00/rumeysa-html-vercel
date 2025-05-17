@@ -900,11 +900,19 @@ body {
 
 <div id="page7" class="page" style="text-align:center; padding:30px; font-family:sans-serif;">
   <img id="lock" src="https://cdn-icons-png.flaticon.com/512/3064/3064197.png" alt="Kilit" style="width:120px; cursor:pointer; transition: opacity 0.8s;">
-  
-  <div id="message" style="margin-top:20px; font-size:20px; color:#4b0082;">
-    İkimizi Anlatan Video, İmkansız Diye Bir Şey Yoktur Biz İstersek Her Şey Olur Aşkım, Kilide Bas Aşkım  
+
+  <div id="click-text" style="margin-top:10px; font-size:18px; color:#d4006a;">
+    Kilide Bas Aşkım ❤️
   </div>
-  
+
+  <div id="message" style="margin-top:20px; font-size:20px; color:#4b0082;">
+    İkimizi Anlatan Video, İmkansız Diye Bir Şey Yoktur Biz İstersek Her Şey Olur Aşkım.
+  </div>
+
+  <div id="love-message" style="display:none; margin-top:20px; font-size:24px; color:red; font-weight:bold;">
+   Sadece Benimsin Aşkım ❤️
+  </div>
+
   <div id="video-container" style="margin-top:30px; display:none;">
     <video id="myVideo" controls>
       <source src="https://cdn.glitch.global/91c07bd8-05ec-4beb-99c0-37365f067aa9/Ate%C5%9F%20ve%20Su%E2%80%99nun%20Unutulmaz%20An%C4%B1!%F0%9F%A5%BA%20%23ate%C5%9Fvesu%20%23a%C5%9Fk%20%23%C3%A7izgifilm%20%23animasyon%20%23ke%C5%9Ffet%20%20%23duygusal%20%23h%C3%BCz%C3%BCn.mp4?v=1747507665565" type="video/mp4">
@@ -973,18 +981,22 @@ body {
     <button id="theme-toggle-button">🌙</button>
 
     <script>
-      document.addEventListener('DOMContentLoaded', () => {
-      const lock = document.getElementById('lock');
-      const videoContainer = document.getElementById('video-container');
+       document.addEventListener("DOMContentLoaded", function () {
+    const lock = document.getElementById("lock");
+    const clickText = document.getElementById("click-text");
+    const loveMessage = document.getElementById("love-message");
+    const videoContainer = document.getElementById("video-container");
 
-      lock.addEventListener('click', () => {
-        lock.style.opacity = '0';
-        setTimeout(() => {
-          lock.style.display = 'none';
-          videoContainer.style.display = 'block';
-        }, 800);
-      });
+    lock.addEventListener("click", function () {
+      lock.style.display = "none";
+      clickText.style.display = "none";
+
+      loveMessage.style.display = "block";
+      videoContainer.style.display = "block";
+
+      document.getElementById("myVideo").play();
     });
+  });
 
  
 const button = document.getElementById('playButton');
