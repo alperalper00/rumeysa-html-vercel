@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://cdn.glitch.global/aae332ad-a578-4317-9d9d-2c127026f461/cb4ea1e6-f480-4f43-972b-a1421c71636b.image.png?v=1747502036195" type="image/png" sizes="32x32">
     <title>Sana Özel Sürprizim ❤️</title>
     <style>
 
@@ -735,6 +733,31 @@ body {
   background: #5a52d4;
 }
 
+
+    #lock {
+      width: 120px;
+      cursor: pointer;
+      transition: opacity 1s ease;
+    }
+
+    #message {
+      display: none;
+      font-size: 24px;
+      color: #4b0082;
+      margin-top: 20px;
+    }
+
+    #video {
+      display: none;
+      margin-top: 30px;
+    }
+
+      #myVideo {
+    width: 300px; 
+    max-width: 100%;
+    border-radius: 8px;
+  }
+
     </style>
 </head>
 <body>
@@ -875,7 +898,30 @@ body {
   </div>
 </div>
 
+<div id="page7" class="page" style="text-align:center; padding:30px; font-family:sans-serif;">
+  <img id="lock" src="https://cdn-icons-png.flaticon.com/512/3064/3064197.png" alt="Kilit" style="width:120px; cursor:pointer; transition: opacity 0.8s;">
+  
+  <div id="message" style="margin-top:20px; font-size:20px; color:#4b0082;">
+    İkimizi Anlatan Video, İmkansız Diye Bir Şey Yoktur Biz İstersek Her Şey Olur Aşkım, Kilide Bas Aşkım  
+  </div>
+  
+  <div id="video-container" style="margin-top:30px; display:none;">
+    <video id="myVideo" controls>
+      <source src="https://cdn.glitch.global/91c07bd8-05ec-4beb-99c0-37365f067aa9/Ate%C5%9F%20ve%20Su%E2%80%99nun%20Unutulmaz%20An%C4%B1!%F0%9F%A5%BA%20%23ate%C5%9Fvesu%20%23a%C5%9Fk%20%23%C3%A7izgifilm%20%23animasyon%20%23ke%C5%9Ffet%20%20%23duygusal%20%23h%C3%BCz%C3%BCn.mp4?v=1747507665565" type="video/mp4">
+      Tarayıcınız video etiketini desteklemiyor.
+    </video>
+  </div>
+</div>
 
+<div id="page8" class="page">
+  <div id="message">İkimizin Aşkla Dolu Sarılması 🤍🎉</div>
+  <div id="video-container">
+    <video id="myVideo" controls>
+      <source src="https://cdn.glitch.global/91c07bd8-05ec-4beb-99c0-37365f067aa9/WhatsApp%20Video%202025-05-17%20at%2023.28.43.mp4?v=1747514786758" type="video/mp4">
+      Tarayıcınız video etiketini desteklemiyor.
+    </video>
+  </div>
+</div>
 
   <div id="page4" class="page">
   <div class="page4-theme">
@@ -900,21 +946,23 @@ body {
             <button id="btn-page4">4</button>
             <button id="btn-page5">5</button>
             <button id="btn-page6">6</button>
+            <button id="btn-page7">7</button>
+            <button id="btn-page8">8</button>
 
         </div>
     
 
-        <footer>
-    <p>&copy; Bu Site Sevgilime Yapıldı,Tüm Hakları Saklıdır.</p>
+<footer>
+<p>&copy; Bu Site Sevgilime Yapıldı,Tüm Hakları Saklıdır.</p>
 </footer>
 
  <button id="playButton">🎶 Müziği Başlat</button>
 
   <audio id="arkaplanMuzik" loop>
-    <source src="https://cdn.glitch.global/5f0879e2-a66e-4db3-a8ed-b39317c75a18/Velet%20-%20Roman%20Olur%20Yazsam%20Seni%20(Official%20Video).mp3?v=1747482441451" type="audio/mpeg">
-    Tarayıcın müziği desteklemiyor.
-  </audio>
-    </div>
+ <source src="https://cdn.glitch.global/5f0879e2-a66e-4db3-a8ed-b39317c75a18/Velet%20-%20Roman%20Olur%20Yazsam%20Seni%20(Official%20Video).mp3?v=1747482441451" type="audio/mpeg">
+ Tarayıcın müziği desteklemiyor.
+ </audio>
+ </div>
 
 <div id="popup" style="position:fixed; top:0; left:0; width:100%; height:100%; background:#000000cc; color:white; display:flex; align-items:center; justify-content:center; flex-direction:column; z-index:9999;">
   <h2>🔊 Ses Açık mı?</h2>
@@ -925,16 +973,32 @@ body {
     <button id="theme-toggle-button">🌙</button>
 
     <script>
+      document.addEventListener('DOMContentLoaded', () => {
+      const lock = document.getElementById('lock');
+      const videoContainer = document.getElementById('video-container');
 
-    const button = document.getElementById('playButton');
-    const music = document.getElementById('arkaplanMuzik');
-
-    button.addEventListener('click', () => {
-      music.play();
-      button.innerText = "🎵 Müzik Çalıyor";
-      button.disabled = true;
+      lock.addEventListener('click', () => {
+        lock.style.opacity = '0';
+        setTimeout(() => {
+          lock.style.display = 'none';
+          videoContainer.style.display = 'block';
+        }, 800);
+      });
     });
-    
+
+ 
+const button = document.getElementById('playButton');
+const music = document.getElementById('arkaplanMuzik');
+
+button.addEventListener('click', () => {
+  if (music.paused) {
+    music.play();
+    button.innerText = "🎵 Müzik Çalıyor";
+  } else {
+    music.pause();
+    button.innerText = "▶️ Müziği Çal";
+  }
+});
 
         function checkPassword() {
             const enteredPassword = document.getElementById('password-input').value;
@@ -1076,7 +1140,7 @@ body {
                 }
             }
 
-             function applySavedTheme() {
+            function applySavedTheme() {
     const savedTheme = localStorage.getItem('theme');
 
     if (savedTheme === 'dark' || savedTheme === null) {
@@ -1091,10 +1155,6 @@ body {
     }
 }
 
-            if (themeToggleButton) {
-                themeToggleButton.addEventListener('click', toggleTheme);
-            }
-
             applySavedTheme();
 
             document.getElementById('btn-page1').addEventListener('click', () => showPage('page1'));
@@ -1103,6 +1163,8 @@ body {
             document.getElementById('btn-page4').addEventListener('click', () => showPage('page4'));
             document.getElementById('btn-page5').addEventListener('click', () => showPage('page5'));
             document.getElementById('btn-page6').addEventListener('click', () => showPage('page6'));
+            document.getElementById('btn-page7').addEventListener('click', () => showPage('page7'));
+            document.getElementById('btn-page8').addEventListener('click', () => showPage('page8'));
 
             if (document.getElementById('main-content').style.display === 'block') {
                 showPage('page1');
