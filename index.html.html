@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sana Özel Sürprizim ❤️</title>
+    <style>
+
+body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #050100; 
+            color: #5c3c3c;
+            overflow: hidden; 
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+
+
+        .heart-fall-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 990;
+            overflow: hidden;
+        }
+
+        .rising-heart {
+            position: absolute;
+            bottom: -70px; 
+            font-size: 1.5em; 
+            color: #e91e63; 
+            opacity: 0;
+            animation-name: riseUp;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            user-select: none;
+            transition: color 0.5s ease;
+        }
+
+        .rising-heart.rh1 { left: 10%; animation-duration: 10s; animation-delay: 0s; font-size: 1.2em; color: #ff7999;}
+        .rising-heart.rh2 { left: 20%; animation-duration: 7s; animation-delay: 1s; font-size: 1.5em; color: #f48fb1;}
+        .rising-heart.rh3 { left: 30%; animation-duration: 12s; animation-delay: 0.5s; font-size: 1em; color: #ffcdd2;}
+        .rising-heart.rh4 { left: 40%; animation-duration: 8s; animation-delay: 2s; font-size: 1.8em; color: #e91e63;}
+        .rising-heart.rh5 { left: 50%; animation-duration: 11s; animation-delay: 3s; font-size: 1.3em; color: #ff7999;}
+        .rising-heart.rh6 { left: 60%; animation-duration: 7.5s; animation-delay: 1.5s; font-size: 1.6em; color: #f48fb1;}
+        .rising-heart.rh7 { left: 70%; animation-duration: 13s; animation-delay: 0.2s; font-size: 0.9em; color: #ffcdd2;}
+        .rising-heart.rh8 { left: 80%; animation-duration: 8.5s; animation-delay: 2.5s; font-size: 1.7em; color: #e91e63;}
+        .rising-heart.rh9 { left: 90%; animation-duration: 9.5s; animation-delay: 1.8s; font-size: 1.1em; color: #ff7999;}
+        .rising-heart.rh10 { left: 25%; animation-duration: 9s; animation-delay: 4s; font-size: 1.4em; color: #ad1457;}
+        .rising-heart.rh11 { left: 75%; animation-duration: 5s; animation-delay: 3.5s; font-size: 1.2em; color: #c2185b;}
+        .rising-heart.rh12 { left: 45%; animation-duration: 3s; animation-delay: 3.5s; font-size: 1.2em; color: #c2185b;}
+        .rising-heart.rh13 { left: 65%; animation-duration: 10s; animation-delay: 3.5s; font-size: 1.2em; color: #c2185b;}
+        .rising-heart.rh14 { left: 75%; animation-duration: 7s; animation-delay: 3.5s; font-size: 1.2em; color: #c2185b;}
+        .rising-heart.rh15 { left: 75%; animation-duration: 10s; animation-delay: 3.5s; font-size: 1.2em; color: #c2185b;}
+        .rising-heart.rh16 { left: 55%; animation-duration: 10s; animation-delay: 3.5s; font-size: 1.2em; color: #c2185b;}
+        .rising-heart.rh17 { left: 75%; animation-duration: 10s; animation-delay: 3.5s; font-size: 1.2em; color: #c2185b;}
+        .rising-heart.rh18 { left: 75%; animation-duration: 6s; animation-delay: 3.5s; font-size: 1.2em; color: #c2185b;}
+        .rising-heart.rh19 { left: 75%; animation-duration: 10s; animation-delay: 3.5s; font-size: 1.2em; color: #c2185b;}
+        .rising-heart.rh20 { left: 75%; animation-duration: 10s; animation-delay: 3.5s; font-size: 1.2em; color: #c2185b;}
+
+        
+        @keyframes riseUp {
+            0% {
+                transform: translateY(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-115vh);
+                opacity: 0;
+            }
+        }
+
+        #password-screen {
+            background-color: rgba(255, 228, 225, 0.95);
+            padding: 30px 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            z-index: 1000;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: background-color 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        #password-screen h2 {
+            color: #d81b60;
+            margin-bottom: 20px;
+            transition: color 0.5s ease;
+        }
+
+        #password-screen input {
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 2px solid #f48fb1;
+            border-radius: 8px;
+            width: calc(100% - 28px);
+            box-sizing: border-box;
+            font-size: 16px;
+            background-color: white;
+            color: #5c3c3c;
+            transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
+        }
+
+        #password-screen button {
+            background-color: #d81b60;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        #password-screen button:hover {
+            background-color: #c2185b;
+        }
+
+        #error-message {
+            color: red;
+            margin-top: 10px;
+            font-size: 0.9em;
+            min-height: 1.2em;
+        }
+
+        .main-content {
+            display: none;
+            background-color: #fff0f5;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(216, 27, 96, 0.2);
+            max-width: 850px;
+            margin: 40px auto;
+            text-align: center;
+            position: relative;
+            overflow: auto;
+            max-height: 90vh;
+            z-index: 1;
+            transition: background-color 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        .main-content::before, .main-content::after {
+            content: '❤️';
+            font-size: 2.5em;
+            color: #e91e63;
+            position: absolute;
+            opacity: 0.7;
+            transition: color 0.5s ease;
+        }
+
+        .main-content::before {
+            top: 15px;
+            left: 20px;
+            transform: rotate(-15deg);
+        }
+
+        .main-content::after {
+            bottom: 15px;
+            right: 20px;
+            transform: rotate(15deg);
+        }
+
+        h1 {
+            color: #e91e63;
+            font-size: 2.8em;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            margin-bottom: 10px;
+            transition: color 0.5s ease;
+        }
+        h1 .heart-icon {
+            font-size: 0.8em;
+            vertical-align: middle;
+            transition: color 0.5s ease;
+        }
+
+        h2 {
+            color: #ad1457;
+            border-bottom: 2px dashed #f48fb1;
+            padding-bottom: 8px;
+            margin-top: 30px;
+            transition: color 0.5s ease, border-color 0.5s ease;
+        }
+
+        img {
+            max-width: 90%;
+            height: auto;
+            border-radius: 15px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border: 5px solid #f8bbd0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            transition: border-color 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        .profile-picture {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+            margin: 20px auto;
+            border: 5px solid #e91e63;
+            box-shadow: 0 5px 15px rgba(216, 27, 96, 0.3);
+        }
+
+        .round-photo {
+            width: 125px;
+            height: 125px;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+            margin: 20px auto;
+            border: 5px solid #e91e63;
+            box-shadow: 0 5px 15px rgba(216, 27, 96, 0.3);
+        }
+
+        .photo-row {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        p {
+            line-height: 1.7;
+            font-size: 1.1em;
+            color: #7b2a3b;
+            transition: color 0.5s ease;
+        }
+
+        .love-note {
+            background-color: #ffcdd2;
+            padding: 20px;
+            border-left: 6px solid #e91e63;
+            margin-top: 25px;
+            margin-bottom: 25px;
+            text-align: left;
+            border-radius: 0 10px 10px 0;
+            transition: background-color 0.5s ease, border-color 0.5s ease;
+        }
+        .love-note h3 {
+            color: #c2185b;
+            margin-top: 0;
+            transition: color 0.5s ease;
+        }
+
+        ul {
+            list-style-type: "💖";
+            padding-left: 30px;
+            text-align: left;
+        }
+
+        ul li {
+            padding-left: 10px;
+            margin-bottom: 8px;
+            transition: color 0.5s ease;
+        }
+
+        .footer-heart {
+            font-size: 2em;
+            color: #e91e63;
+            margin: 0;
+            transition: color 0.5s ease;
+        }
+
+        #clickableMessageBox {
+            background-color: #ffcdd2;
+            border: 2px solid #ff000092;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 50px auto 0 auto;
+            cursor: pointer;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            max-width: 300px;
+        }
+
+        #clickableMessageBox:hover {
+            background-color: #ffebed;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .click-prompt {
+            font-size: 1.2em;
+            color: #ad1457;
+            font-weight: bold;
+            transition: color 0.5s ease;
+        }
+
+        .hidden-content {
+            display: none;
+        }
+
+        #theme-toggle-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #d81b60;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            font-size: 1.5em;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            z-index: 1001;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        #theme-toggle-button:hover {
+            background-color: #c2185b;
+            transform: scale(1.05);
+        }
+
+        /* Dark Theme Styles */
+        body.dark-theme {
+            background-color: #282c34;
+            color: #f8f8f2;
+        }
+
+        body.dark-theme .rising-heart {
+            color: #bb86fc;
+        }
+
+        body.dark-theme #password-screen {
+            background-color: rgba(40, 44, 52, 0.95);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+        }
+
+        body.dark-theme #password-screen h2 {
+            color: #bb86fc;
+        }
+
+        body.dark-theme #password-screen input {
+            background-color: #3b3f4a;
+            color: #f8f8f2;
+            border: 2px solid #6200ee;
+        }
+
+        body.dark-theme #password-screen button {
+            background-color: #6200ee;
+        }
+
+        body.dark-theme #password-screen button:hover {
+            background-color: #3700b3;
+        }
+
+        body.dark-theme .main-content {
+            background-color: #1e1e1e;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        body.dark-theme .main-content::before,
+        body.dark-theme .main-content::after {
+            color: #bb86fc;
+        }
+
+        body.dark-theme h1 {
+            color: #bb86fc;
+        }
+        body.dark-theme h1 .heart-icon {
+            color: #bb86fc;
+        }
+
+        body.dark-theme h2 {
+            color: #03dac6;
+            border-bottom-color: #03dac6;
+        }
+
+        body.dark-theme p {
+            color: #b0b0b0;
+        }
+
+        body.dark-theme .love-note {
+            background-color: #333333;
+            border-left-color: #03dac6;
+        }
+        body.dark-theme .love-note h3 {
+            color: #03dac6;
+        }
+
+        body.dark-theme ul {
+            list-style-type: "✨";
+        }
+
+        body.dark-theme ul li {
+            color: #b0b0b0;
+        }
+
+        body.dark-theme img {
+            border-color: #03dac6;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+        }
+
+        body.dark-theme .profile-picture,
+        body.dark-theme .round-photo {
+            border-color: #bb86fc;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        body.dark-theme #clickableMessageBox {
+            background-color: #333333;
+            border-color: #03dac6;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        body.dark-theme #clickableMessageBox:hover {
+            background-color: #444444;
+        }
+
+        body.dark-theme .click-prompt {
+            color: #bb86fc;
+        }
+
+        body.dark-theme .footer-heart {
+            color: #bb86fc;
+        }
+
+        body.dark-theme #theme-toggle-button {
+            background-color: #03dac6;
+        }
+        body.dark-theme #theme-toggle-button:hover {
+            background-color: #018786;
+        }
+
+        /* Pagination Buttons Styling */
+        .pagination-buttons {
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .pagination-buttons button {
+            background-color: #d81b60;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            margin: 0 10px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .pagination-buttons button:hover {
+            background-color: #c2185b;
+            transform: translateY(-2px);
+        }
+
+        .pagination-buttons button.active {
+            background-color: #ad1457;
+            cursor: default;
+            transform: none;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .page {
+            display: none;
+        }
+        .page.active-page {
+            display: block;
+        }
+
+        #heart {
+            position: relative;
+            width: 100px; 
+            height: 90px; 
+            margin: 50px auto 0 auto; 
+            animation: pulse 2s infinite; 
+            transform-origin: center center; 
+        }
+
+        #heart:before,
+        #heart:after {
+            position: absolute;
+            content: "";
+            left: 50px;
+            top: 0;
+            width: 50px;
+            height: 80px;
+            background: red; 
+            border-radius: 50px 50px 0 0;
+            transform: rotate(-45deg);
+            transform-origin: 0 100%;
+            transition: background 0.5s ease;
+        }
+
+        #heart:after {
+            left: 0;
+            transform: rotate(45deg);
+            transform-origin: 100% 100%;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .heart-beat-text {
+            margin-top: 20px;
+            font-size: 1.6em;
+            font-weight: bold;
+            color: #ff0000; 
+            text-align: center;
+            min-height: 1.6em;
+            opacity: 0;
+            transition: opacity 0.5s ease, color 0.5s ease;
+        }
+
+        body.dark-theme .pagination-buttons button {
+            background-color: #6200ee;
+            color: #f8f8f2;
+        }
+        body.dark-theme .pagination-buttons button:hover {
+            background-color: #3700b3;
+        }
+        body.dark-theme .pagination-buttons button.active {
+            background-color: #3700b3;
+        }
+
+        body.dark-theme #heart:before,
+        body.dark-theme #heart:after {
+            background: #ff4d4d; 
+        }
+
+        body.dark-theme .heart-beat-text {
+            color: #ff4d4d;
+        }
+        
+    .gun {
+        
+      margin: 0 5px;
+      display: inline-block;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 300;
+      font-size: 1.2em;
+      color: #fff;
+    }
+    .gun.bugun {
+      font-family: 'Amatic SC', cursive;
+      font-weight: 700;
+      font-size: 1.4em;
+      color: #e91e63;
+    }        
+
+    body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+    transition: background-color 0.3s;
+}
+
+.container {
+    text-align: center;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    z-index: 1; 
+    position: relative; 
+}
+
+#nameInput {
+    padding: 10px;
+    font-size: 16px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+  .compliment-container {
+    margin-top: 40px;
+    text-align: center;
+  }
+  .compliment-container input {
+    padding: 8px;
+    font-size: 16px;
+    color: #e91e63;
+
+  }
+
+  .compliment-container input::placeholder {
+  color: #f8bbd0;
+}
+
+  .compliment-container button {
+    padding: 8px 12px;
+    font-size: 16px;
+    margin-left: 8px;
+    cursor: pointer;
+  }
+
+  .overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(0,0,0,0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.8s;
+    z-index: 9999;
+  }
+  .overlay.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+  .compliment-text {
+    color: #fff;
+    font-size: 2rem;
+    text-align: center;
+    padding: 20px;
+    max-width: 80%;
+  }
+
+  
+.mouse-trail-element {
+    position: fixed; 
+    width: 15px;    
+    height: 15px;   
+    background-color: rgba(150, 100, 255, 0.8); /
+    border-radius: 50%; 
+    pointer-events: none;
+    transform: translate(-50%, -50%); 
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    z-index: 9999; 
+    box-shadow: 0 0 10px rgba(150, 100, 255, 0.6); 
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.mouse-trail-element.fade-out {
+    opacity: 0; 
+    transform: translate(-50%, -50%) scale(0.5); 
+}
+
+ body, html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: #000;
+    }
+    #fireworks-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+      body {
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding: 20px;
+      color: #800040;
+    }
+    h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 20px;
+      margin-bottom: 40px;
+    }
+    #playButton {
+      padding: 12px 24px;
+      font-size: 18px;
+      background-color: #ff4d6d;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    #playButton:hover {
+      background-color: #c9184a;
+    }
+
+ img {
+  max-width: 300px; 
+  width: 100%;      
+  height: auto;     
+  border-radius: 12px;
+}
+
+::-webkit-scrollbar {
+  width: 8px; 
+}
+
+::-webkit-scrollbar-track {
+  background: #333333
+}
+
+::-webkit-scrollbar-thumb {
+  background: #6c63ff; 
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #5a52d4;
+}
+
+    </style>
+</head>
+<body>
+
+    
+    <div class="heart-fall-container" id="heart-container">
+        <div class="rising-heart rh1">❤️</div>
+        <div class="rising-heart rh2">💖</div>
+        <div class="rising-heart rh3">💕</div>
+        <div class="rising-heart rh4">💗</div>
+        <div class="rising-heart rh5">💓</div>
+        <div class="rising-heart rh6">❤️</div>
+        <div class="rising-heart rh7">💖</div>
+        <div class="rising-heart rh8">💕</div>
+        <div class="rising-heart rh9">💗</div>
+        <div class="rising-heart rh10">❤️</div>
+        <div class="rising-heart rh11">💖</div>
+        <div class="rising-heart rh12">💖</div>
+        <div class="rising-heart rh13">💗</div>
+        <div class="rising-heart rh14">💖</div>
+        <div class="rising-heart rh15">❤️</div>
+        <div class="rising-heart rh16">💖</div>
+        <div class="rising-heart rh17">💕</div>
+        <div class="rising-heart rh18">💖</div>
+        <div class="rising-heart rh19">💗</div>
+        <div class="rising-heart rh20">💖</div>
+    </div>
+
+    <div id="password-screen">
+        <h2><span class="heart-icon">💖</span> Bu Site İkimiz İçin Özel <span class="heart-icon">💖</span></h2>
+        <p>Şifreyi Öğrenmek İçin Ara Beni Balım 😉</p>
+        <input type="password" id="password-input" placeholder="Şifre Girişi Yapınız">
+        <button onclick="checkPassword()">Giriş Yap</button>
+        <p id="error-message"></p>
+    </div>
+
+    <div class="main-content" id="main-content">
+        <div id="page1" class="page active-page">
+            <h1>Canım Sevgilim <span class="heart-icon">❤️</span> Melek Yüzlü'm 🤍</h1>
+
+            <img src="https://cdn.glitch.global/d3dec5ec-19c6-4343-9dd5-c8fd67ee5246/15461853-4d61-4a87-8c41-a6fcf4d16a0a.image.png?v=1747051330764" alt="Birlikte en sevdiğim fotoğrafımız" class="profile-picture">
+
+            <p>
+                Minik Kuşum,
+            </p>
+            <p>
+                Bu Dijital Dünyanın Küçük Bir Köşesini Sadece Senin İçin, Kalbimdeki Tüm Sevgiyle Hazırladım.
+                Umarım Yüzünde Kocaman Bir Gülümseme Oluşturabilirim.
+            </p>
+
+            <h2>Kısacık Anılarımızı Paylaşayım Burada;</h2>
+            <ul>
+                <li>Pembe Hocanın Dersinde Yemek Videoları İzlemek</li>
+                <li>Daha Sevgili Bile Değilken Okula Senin İçin Gelip Sarılıp Uzun Uzun Durmamız</li>
+                <li>Ben Hasta Olduğumda Doğru Dürüst Meyve Yemeyen Biri Olarak Bana Meyve Getirip Hepsini Yemem</li>
+                <li>Bana Sürpriz Doğum Günü Hazırlaman,Bu Benim Açımdan En Güzel Olanı</li>
+                <li>Değişik Pozlar Verip Fotoğraf Çekinmelerimiz</li>
+                <li>Sevgili Bile Değilken Sabaha Kadar Telefonda Konuşmamız</li>
+                <li>Benim Sana Hediyeler Almam,Senin Bana Hediyeler Alman</li>
+                <li>Görüntülüde Uyuman</li>
+                <li>Görüntülüde Karşımda Utanarak Yemek Yemen</li>
+            </ul>
+
+            <div class="love-note">
+                <h3>Kalbimden Sana Dökülenler</h3>
+                <p>
+                Her ne kadar zaman zaman tartışmalar yaşasak, aramız bozulsa ve kalplerimiz kırılmış olsa da, bilmeni isterim ki sana olan sevgim hiçbir zaman azalmadı. Ne yaşarsak yaşayalım, ne kadar zor günlerden geçersek geçerim, ben senden soğumam, seni bırakmam. Çünkü ben senin hayatına girebilmek için gerçekten emek verdim, yüreğimi ortaya koydum. Her adımımda seni düşünerek hareket ettim, seni sevdiğim için kalbim huzur buldu. Seninle olduğumda eksik parçalarım tamamlanıyor gibi hissediyorum. Bu yüzden varlığın benim için tarifsiz bir değer taşıyor. İyi ki varsın, iyi ki kalbimdesin, iyi ki benimsin. Lütfen bunu hiçbir zaman unutma. Seni her şeyden çok seviyorum. ❤️🤍
+                </p>
+            </div>
+
+            <div class="photo-row">
+                <img src="https://cdn.glitch.global/e40415bc-f90e-4560-9f91-2c40615b1cda/20f10257-15e7-414d-9eea-ffde6f4f2053.image.png?v=1747053958828" alt="Fotoğraf Anılarımız" class="round-photo">
+                <img src="https://cdn.glitch.global/e40415bc-f90e-4560-9f91-2c40615b1cda/0f1fa11d-9f76-411f-adeb-090fae5ef94d.image.png?v=1747054330343" alt="Fotoğraf Anılarımız" class="round-photo">
+                <img src="https://cdn.glitch.global/e40415bc-f90e-4560-9f91-2c40615b1cda/e6537904-1d38-4366-8df1-e8d0e90f98f0.image.png?v=1747054476901" alt="Fotoğraf Anılarımız" class="round-photo">
+                <img src="https://cdn.glitch.global/e40415bc-f90e-4560-9f91-2c40615b1cda/9f2b8ba1-dac4-4b7d-82c3-90cfcafd2e81.image.png?v=1747054729023" alt="Kalp eller" class="round-photo">
+            </div>
+
+            <div id="clickableMessageBox">
+                <p id="messagePrompt" class="click-prompt">Mesajı Görmek İçin Tıkla!</p>
+                <p id="actualMessage" class="footer-heart hidden-content">Şunu Unutmaki Seninle Evlenecem Ve Kız Çocuğumuz Olacak. ❤️</p>
+            </div>
+        </div>
+
+        
+<div id="page2" class="page">
+<h1>
+  Sana Özel Bir Kalp
+  <span class="heart-icon"></span>
+</h1>            <div class="fancy-heart-container">
+                <div id="heart"></div> <div class="heart-beat-text" id="heart-beat-text"></div>
+            </div>
+            <p style="text-align: center; margin-top: 50px; font-size: 1.2em;">
+                Ömrümsün Kızım Sen Ömrüm Mıncırır Yerim Seni NamNamNamNam ❤️
+            </p>
+        </div>
+
+
+        <div id="page3" class="page">
+            <div class="page3-theme">
+                <h1>Tavşan Yapımı Videosu 🐰</h1>
+                <div class="video-container">
+<iframe
+    src="https://www.youtube.com/embed/6Rvq_NdclJo"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen>
+</iframe>
+                </div>
+                <p>Bu Videoyu Her Sana Yaptığım Özel Bir Şeyde Koyacam Unutmam 🎥</p>
+            </div>
+        </div>
+
+
+        <div id="page5" class="page">
+        <div class="page5-theme">
+        <div class="compliment-container">
+      <input id="nameInput" type="text" placeholder="Adını Gir Aşkım " />
+      <button id="sendBtn">Gönder</button>
+      <p style="text-align: center; margin-top: 50px; font-size: 1.2em;">
+      Aşkım Sadece Adını Yazınca Çalışır Burası,Her Seferinde Farklı İltifat Eder ❤️
+            </p>
+    </div>
+    
+  </div>
+</div>
+
+<div id="overlay" class="overlay">
+  <div id="complimentText" class="compliment-text"></div>
+</div>
+
+ 
+<div id="page6" class="page">
+  <div class="page6-theme">
+    <h1>İlk Konuşmamız 📸</h1>
+    <div class="photo-container" style="text-align:center;">   
+      <img src="https://cdn.glitch.global/431607ea-c055-4ddf-994d-e3f4aef5ac9e/3b8f4406-32c0-42cd-bdcf-787fa85b332a.image.png?v=1747486992711" alt="Fotoğraf" height="50" />
+    </div>
+  </div>
+</div>
+
+
+
+  <div id="page4" class="page">
+  <div class="page4-theme">
+    <div class="col-md-12 d-flex align-items-center justify-content-center">
+      <div id="gun-container"></div>
+    </div>
+
+    <div class="col-md-12 text-center mt-3">
+      <p id="relationship-days-text" class="lead"></p>
+    </div>
+    <div class="col-md-12 d-flex align-items-center justify-content-center">
+      <h3><span class="badge badge-warning"></span></h3>
+    </div>
+  </div>
+</div>
+
+
+          <div class="pagination-buttons">
+            <button id="btn-page1" class="active">1</button>
+            <button id="btn-page2">2</button>
+            <button id="btn-page3">3</button>
+            <button id="btn-page4">4</button>
+            <button id="btn-page5">5</button>
+            <button id="btn-page6">6</button>
+
+        </div>
+    
+
+        <footer>
+    <p>&copy; Bu Site Sevgilime Yapıldı,Tüm Hakları Saklıdır.</p>
+</footer>
+
+ <button id="playButton">🎶 Müziği Başlat</button>
+
+  <audio id="arkaplanMuzik" loop>
+    <source src="https://cdn.glitch.global/5f0879e2-a66e-4db3-a8ed-b39317c75a18/Velet%20-%20Roman%20Olur%20Yazsam%20Seni%20(Official%20Video).mp3?v=1747482441451" type="audio/mpeg">
+    Tarayıcın müziği desteklemiyor.
+  </audio>
+    </div>
+
+<div id="popup" style="position:fixed; top:0; left:0; width:100%; height:100%; background:#000000cc; color:white; display:flex; align-items:center; justify-content:center; flex-direction:column; z-index:9999;">
+  <h2>🔊 Ses Açık mı?</h2>
+  <p>Şifre İle Giriş Yaptıktan Sonra Aşağı Kaydırınca "Müziği Başlat" Butonu Bulunmakta,Ses Ayarlarınızı Kontrol Ediniz.</p>
+  <button onclick="document.getElementById('popup').style.display='none'">Onayla</button>
+</div>
+    
+    <button id="theme-toggle-button">🌙</button>
+
+    <script>
+
+    const button = document.getElementById('playButton');
+    const music = document.getElementById('arkaplanMuzik');
+
+    button.addEventListener('click', () => {
+      music.play();
+      button.innerText = "🎵 Müzik Çalıyor";
+      button.disabled = true;
+    });
+    
+
+        function checkPassword() {
+            const enteredPassword = document.getElementById('password-input').value;
+            const errorMessageElement = document.getElementById('error-message');
+            const correctPassword = "8112004";
+            const heartContainer = document.getElementById('heart-container');
+
+            if (enteredPassword === correctPassword) {
+                document.getElementById('password-screen').style.display = 'none';
+                document.getElementById('main-content').style.display = 'block';
+                if (heartContainer) {
+                    heartContainer.style.display = 'none';
+                }
+                document.body.style.overflow = 'auto';
+                showPage('page1'); 
+            } else {
+                errorMessageElement.textContent = 'Şifreyi Tek Benim Hatun Biliyor.';
+                document.getElementById('password-input').value = '';
+                document.getElementById('password-input').focus();
+            }
+        }
+
+        document.getElementById('password-input').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                checkPassword();
+            }
+        });
+
+        let phrase = "Bu Kalp Sen Olduğun Sürece Her Daim SEN Diye Atacak Seni Seviyorum ❤️";
+        let words = phrase.split(' ');
+        let currentWordDisplayIndex = 0;
+        let heartBeatTextInterval = null;
+        let fullSentenceDisplayTimeout = null; 
+        let heartBeatTextElement = null; 
+
+        function displayNextWordOnBeat() {
+            if (!heartBeatTextElement) {
+                heartBeatTextElement = document.getElementById('heart-beat-text');
+                if (!heartBeatTextElement) return; 
+            }
+
+            if (currentWordDisplayIndex < words.length) {
+                heartBeatTextElement.style.opacity = '1'; 
+                heartBeatTextElement.textContent += words[currentWordDisplayIndex] + ' '; 
+                currentWordDisplayIndex++;
+            }
+
+            if (currentWordDisplayIndex === words.length) {
+                clearInterval(heartBeatTextInterval); 
+
+               
+                fullSentenceDisplayTimeout = setTimeout(() => {
+                    heartBeatTextElement.style.opacity = '0'; 
+                    currentWordDisplayIndex = 0; 
+                    heartBeatTextElement.textContent = ''; 
+                    startHeartBeatTextAnimation(); 
+                }, 5000); 
+            }
+        }
+
+        function startHeartBeatTextAnimation() {
+            if (heartBeatTextInterval) {
+                clearInterval(heartBeatTextInterval);
+            }
+            if (fullSentenceDisplayTimeout) {
+                clearTimeout(fullSentenceDisplayTimeout);
+            }
+
+            currentWordDisplayIndex = 0; 
+            heartBeatTextElement = document.getElementById('heart-beat-text');
+            if (heartBeatTextElement) {
+                heartBeatTextElement.style.opacity = '0'; 
+                heartBeatTextElement.textContent = ''; 
+            }
+
+            setTimeout(() => {
+                displayNextWordOnBeat();
+                heartBeatTextInterval = setInterval(displayNextWordOnBeat, 2000);
+            }, 1000);
+        }
+
+
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => {
+                page.classList.remove('active-page');
+            });
+            document.getElementById(pageId).classList.add('active-page');
+
+            const buttons = document.querySelectorAll('.pagination-buttons button');
+            buttons.forEach(button => {
+                button.classList.remove('active');
+            });
+            document.getElementById(`btn-${pageId}`).classList.add('active');
+
+            if (pageId === 'page2') {
+                startHeartBeatTextAnimation();
+            } else {
+                if (heartBeatTextInterval) {
+                    clearInterval(heartBeatTextInterval);
+                    heartBeatTextInterval = null;
+                }
+                if (fullSentenceDisplayTimeout) {
+                    clearTimeout(fullSentenceDisplayTimeout);
+                    fullSentenceDisplayTimeout = null;
+                }
+                if(heartBeatTextElement) {
+                     heartBeatTextElement.style.opacity = '0';
+                     heartBeatTextElement.textContent = '';
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const clickableMessageBox = document.getElementById('clickableMessageBox');
+            const messagePrompt = document.getElementById('messagePrompt');
+            const actualMessage = document.getElementById('actualMessage');
+            const themeToggleButton = document.getElementById('theme-toggle-button');
+            const body = document.body;
+
+            if (clickableMessageBox) {
+                clickableMessageBox.addEventListener('click', function() {
+                    messagePrompt.style.display = 'none';
+                    actualMessage.style.display = 'block';
+                    actualMessage.style.fontSize = '1.0em';
+                });
+            }
+
+            function toggleTheme() {
+                if (body.classList.contains('dark-theme')) {
+                    body.classList.remove('dark-theme');
+                    themeToggleButton.textContent = '🌙';
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    body.classList.add('dark-theme');
+                    themeToggleButton.textContent = '☀️';
+                    localStorage.setItem('theme', 'dark');
+                }
+            }
+
+            function applySavedTheme() {
+                const savedTheme = localStorage.getItem('theme');
+                if (savedTheme === 'dark') {
+                    body.classList.add('dark-theme');
+                    themeToggleButton.textContent = '☀️';
+                } else {
+                    body.classList.remove('dark-theme');
+                    themeToggleButton.textContent = '🌙';
+                }
+            }
+
+            if (themeToggleButton) {
+                themeToggleButton.addEventListener('click', toggleTheme);
+            }
+
+            applySavedTheme();
+
+            document.getElementById('btn-page1').addEventListener('click', () => showPage('page1'));
+            document.getElementById('btn-page2').addEventListener('click', () => showPage('page2'));
+            document.getElementById('btn-page3').addEventListener('click', () => showPage('page3'));
+            document.getElementById('btn-page4').addEventListener('click', () => showPage('page4'));
+            document.getElementById('btn-page5').addEventListener('click', () => showPage('page5'));
+            document.getElementById('btn-page6').addEventListener('click', () => showPage('page6'));
+
+            if (document.getElementById('main-content').style.display === 'block') {
+                showPage('page1');
+            }
+        });
+
+        window.onload = function() {
+            document.getElementById('password-input').focus();
+        };
+    </script>
+
+</body>
+</html>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const startDate = new Date(2024, 11, 15); 
+
+    const today = new Date(); 
+
+    const startOfStartDate = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate());
+    const startOfToday = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+
+    const diffMs = startOfToday.getTime() - startOfStartDate.getTime();
+
+    const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+
+    const currentDayNumber = diffDays + 1;
+
+    const range = 2; 
+    const container = document.getElementById('gun-container');
+
+    container.innerHTML = '';
+
+    for (let offset = -range; offset <= range; offset++) {
+        const span = document.createElement('span');
+        span.classList.add('gun');
+
+        const dayToShow = currentDayNumber + offset;
+
+        if (offset === 0) {
+            span.classList.add('bugun');
+        }
+       
+        if (offset > 0) {
+             span.classList.add('text-muted');
+        }
+      
+        span.textContent = dayToShow;
+        container.appendChild(span);
+    }
+
+     const relationshipTextElement = document.getElementById('relationship-days-text');
+    if (relationshipTextElement) {
+        relationshipTextElement.textContent = `Miniğim Sevgili Olalı Tam ${currentDayNumber} Gün Oldu,Bu Sayı Her Gün Artacak Otomatik Olarak Günümüzü Göstercek`;
+    }
+});
+
+
+ const compliments = [
+    "Gülüşün güneşi kıskandırıyor 🌞",
+    "Seninle konuşmak en güzel terapi 💬",
+    "Işığın karanlıkları aydınlatır ✨",
+    "Sen dünyadaki en nadide çiçeksin 🌷",
+    "Varlığın bile huzur veriyor 🌼",
+    "Her bakışın kalbimi ısıtıyor ❤️",
+    "Seninle her an yılbaşına benziyor 🎄",
+    "Sesin en güzel melodi 🎶",
+    "Sen bir mucizesin 🌟",
+    "Seninle her şey mümkündür 🚀",
+    "İçtenliğin beni etkiliyor 🤗",
+    "Senin gibi biriyle tanıştığım için şanslıyım 🙏",
+    "Pozitif enerjin etrafa yayılıyor ✨",
+    "Gözlerin yıldızlar kadar parlak 👀✨",
+    "Her halinle çok güzelsin 🥰",
+    "Senin gücün takdire şayan 💪",
+    "Yanında zaman su gibi akıyor ⏳",
+    "Dünyayı daha güzel bir yer yapıyorsun 🌍💖",
+    "Kişiliğin büyüleyici ✨",
+    "Enerjin bulaşıcı, etrafına neşe saçıyorsun 🎉",
+    "Kalbinin güzelliği yüzüne yansımış 😊",
+    "En zor anlarda bile pozitif kalmayı başarıyorsun 👍",
+    "Hayata bakış açın ilham verici ✨",
+    "Yaratıcılığın sınır tanımıyor 🎨",
+    "Küçük detayları fark etmen harika 🔍",
+    "Senin samimiyetine güveniyorum 🤗",
+    "Gülüşünle içimi aydınlatıyorsun 😄",
+    "Çözüm odaklı olman takdire şayan ✅",
+    "Etrafındaki insanlara değer katıyorsun 🌟",
+    "Senin auran çok pozitif ve çekici ✨",
+    "Olumlu yaklaşımın her şeyi güzelleştiriyor 👍",
+    "Senin gibi arkadaşa sahip olmak bir lütuf 🙏",
+    "Kendine has bir tarzın var ve bu harika 🌟",
+    "Her zaman yanımda olduğunu bilmek güven veriyor 🤗",
+    "Ortamlara girdiğinde pozitif bir hava katıyorsun 🎉",
+    "Merhametin ve duyarlılığın çok etkileyici ❤️",
+    "Başarılarınla gurur duyuyorum 🚀",
+    "Hayallerinin peşinden gitme cesaretin ilham verici 💪",
+    "Seninle sıradan anlar bile özel hale geliyor ✨",
+    "İyi ki hayatımdasın! 🥰",
+    "Seninle vakit geçirmek paha biçilemez bir duygu 💎"
+];
+
+
+  const input = document.getElementById("nameInput");
+  const btn   = document.getElementById("sendBtn");
+  const overlay = document.getElementById("overlay");
+  const textDiv = document.getElementById("complimentText");
+
+    let currentIndex = 0;
+
+    btn.addEventListener("click", () => {
+      const val = input.value.trim().toLowerCase();
+      if (val === "rumeysa") {
+        textDiv.textContent = compliments[currentIndex];
+
+        currentIndex = (currentIndex + 1) % compliments.length;
+
+        overlay.classList.add("active");
+        const delay = 1000 + Math.random() * 4000;
+        setTimeout(() => {
+          overlay.classList.remove("active");
+        }, delay);
+      } else {
+        alert("Lütfen Sadece “rumeysa”/“Rumeysa” Yazıp Gönderin 😊");
+      }
+    });
+
+
+  document.addEventListener('mousemove', function(e) {
+    const trailElement = document.createElement('div');
+    trailElement.classList.add('mouse-trail-element'); 
+
+    trailElement.style.left = e.clientX + 'px';
+    trailElement.style.top = e.clientY + 'px';
+
+    document.body.appendChild(trailElement);
+
+    setTimeout(function() {
+        trailElement.classList.add('fade-out');
+    }, 50);
+
+    setTimeout(function() {
+        trailElement.remove(); 
+    }, 800); 
+});
+
+
+
+ window.addEventListener('load', () => {
+      const duration = 5 * 1000; 
+      const end = Date.now() + duration;
+      const canvas = document.getElementById('fireworks-canvas');
+      const myConfetti = confetti.create(canvas, {
+        resize: true,
+        useWorker: true
+      });
+
+      function randomInRange(min, max) {
+        return Math.random() * (max - min) + min;
+      }
+
+      const interval = setInterval(() => {
+        const timeLeft = end - Date.now();
+
+        if (timeLeft <= 0) {
+          clearInterval(interval);
+          canvas.style.display = 'none';
+          return;
+        }
+
+        const particleCount = 60 * (timeLeft / duration);
+
+        myConfetti({
+          particleCount: Math.floor(particleCount),
+          startVelocity: 30,
+          spread: 360,
+          ticks: 50,
+          origin: {
+            x: randomInRange(0.1, 0.3),
+            y: randomInRange(0.1, 0.3)
+          }
+        });
+        myConfetti({
+          particleCount: Math.floor(particleCount),
+          startVelocity: 30,
+          spread: 360,
+          ticks: 50,
+          origin: {
+            x: randomInRange(0.7, 0.9),
+            y: randomInRange(0.1, 0.3)
+          }
+        });
+      }, 250);
+    });
+
+</script>
+
