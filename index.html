@@ -86,7 +86,54 @@ body {
             }
         }
 
-    
+        #password-screen {
+            background-color: rgba(255, 228, 225, 0.95);
+            padding: 30px 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            z-index: 1000;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: background-color 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        #password-screen h2 {
+            color: #d81b60;
+            margin-bottom: 20px;
+            transition: color 0.5s ease;
+        }
+
+        #password-screen input {
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 2px solid #f48fb1;
+            border-radius: 8px;
+            width: calc(100% - 28px);
+            box-sizing: border-box;
+            font-size: 16px;
+            background-color: white;
+            color: #5c3c3c;
+            transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
+        }
+
+        #password-screen button {
+            background-color: #d81b60;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        #password-screen button:hover {
+            background-color: #c2185b;
+        }
+
         #error-message {
             color: red;
             margin-top: 10px;
@@ -298,7 +345,29 @@ body {
             color: #bb86fc;
         }
 
-        
+        body.dark-theme #password-screen {
+            background-color: rgba(40, 44, 52, 0.95);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+        }
+
+        body.dark-theme #password-screen h2 {
+            color: #bb86fc;
+        }
+
+        body.dark-theme #password-screen input {
+            background-color: #3b3f4a;
+            color: #f8f8f2;
+            border: 2px solid #6200ee;
+        }
+
+        body.dark-theme #password-screen button {
+            background-color: #6200ee;
+        }
+
+        body.dark-theme #password-screen button:hover {
+            background-color: #3700b3;
+        }
+
         body.dark-theme .main-content {
             background-color: #1e1e1e;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
@@ -717,7 +786,14 @@ body {
         <div class="rising-heart rh20">💖</div>
     </div>
 
-    
+    <div id="password-screen">
+        <h2><span class="heart-icon">💖</span> Bu Site İkimiz İçin Özel <span class="heart-icon">💖</span></h2>
+        <p>Şifreyi Öğrenmek İçin Ara Beni Balım 😉</p>
+        <input type="password" id="password-input" placeholder="Şifre Girişi Yapınız">
+        <button onclick="checkPassword()">Giriş Yap</button>
+        <p id="error-message"></p>
+    </div>
+
     <div class="main-content" id="main-content">
         <div id="page1" class="page active-page">
             <h1>Canım Sevgilim <span class="heart-icon">❤️</span> Melek Yüzlü'm 🤍</h1>
@@ -932,7 +1008,33 @@ button.addEventListener('click', () => {
   }
 });
 
-       
+        function checkPassword() {
+            const enteredPassword = document.getElementById('password-input').value;
+            const errorMessageElement = document.getElementById('error-message');
+            const correctPassword = "8112004";
+            const heartContainer = document.getElementById('heart-container');
+
+            if (enteredPassword === correctPassword) {
+                document.getElementById('password-screen').style.display = 'none';
+                document.getElementById('main-content').style.display = 'block';
+                if (heartContainer) {
+                    heartContainer.style.display = 'none';
+                }
+                document.body.style.overflow = 'auto';
+                showPage('page1'); 
+            } else {
+                errorMessageElement.textContent = 'Şifreyi Tek Benim Hatun Biliyor.';
+                document.getElementById('password-input').value = '';
+                document.getElementById('password-input').focus();
+            }
+        }
+
+        document.getElementById('password-input').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                checkPassword();
+            }
+        });
 
         let phrase = "Bu Kalp Sen Olduğun Sürece Her Daim SEN Diye Atacak Seni Seviyorum ❤️";
         let words = phrase.split(' ');
@@ -1072,20 +1174,13 @@ button.addEventListener('click', () => {
             document.getElementById('btn-page7').addEventListener('click', () => showPage('page7'));
             document.getElementById('btn-page8').addEventListener('click', () => showPage('page8'));
 
+            if (document.getElementById('main-content').style.display === 'block') {
+                showPage('page1');
+            }
         });
 
-       window.onload = function() {
-    // Şifre sormadan doğrudan 'page1' göster
-    showPage('page1');
-    
-    // Eğer varsa, şifre inputunu gizle
-    const pwInput = document.getElementById('password-input');
-    if (pwInput) pwInput.style.display = 'none';
-    
-    // main-content görünür olsun
-    const mainContent = document.getElementById('main-content');
-    if (mainContent) mainContent.style.display = 'block';
-
+        window.onload = function() {
+            document.getElementById('password-input').focus();
         };
     </script>
 
@@ -1278,4 +1373,3 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
 </script>
-
