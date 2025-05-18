@@ -792,8 +792,8 @@ body {
 </head>
 <body>
 
-    
-    <div class="heart-fall-container" id="heart-container">
+
+   <div class="heart-fall-container" id="heart-container">
         <div class="rising-heart rh1">❤️</div>
         <div class="rising-heart rh2">💖</div>
         <div class="rising-heart rh3">💕</div>
@@ -1022,111 +1022,140 @@ body {
   <button onclick="document.getElementById('popup').style.display='none'">Onayla</button>
 </div>
     
+
+    <canvas id="fireworks-canvas"></canvas>
     <button id="theme-toggle-button">🌙</button>
 
-
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const themeToggleButton = document.getElementById('theme-toggle-button');
+            const body = document.body;
+            function toggleTheme() {
+                if (body.classList.contains('dark-theme')) {
+                    body.classList.remove('dark-theme');
+                    themeToggleButton.textContent = '🌙';
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    body.classList.add('dark-theme');
+                    themeToggleButton.textContent = '☀️';
+                    localStorage.setItem('theme', 'dark');
+                }
+            }
+            function applySavedTheme() {
+                const savedTheme = localStorage.getItem('theme');
+                if (savedTheme === 'dark') {
+                    body.classList.add('dark-theme');
+                    themeToggleButton.textContent = '☀️';
+                } else {
+                    body.classList.remove('dark-theme');
+                    themeToggleButton.textContent = '🌙';
+                }
+            }
+            if (themeToggleButton) {
+                themeToggleButton.addEventListener('click', toggleTheme);
+            }
+            applySavedTheme();
+        });
 
-const unlockDate = new Date("2025-11-08T00:00:00");
-const realMessage = document.getElementById("realMessage");
-const lockedMessage = document.getElementById("lockedMessage");
-const countdown = document.getElementById("countdown");
-const animatedText = document.getElementById("animatedText");
-const page9 = document.getElementById("page9");
+        const unlockDate = new Date("2025-11-08T00:00:00");
+        const realMessage = document.getElementById("realMessage");
+        const lockedMessage = document.getElementById("lockedMessage");
+        const countdown = document.getElementById("countdown");
+        const animatedText = document.getElementById("animatedText");
+        const page9 = document.getElementById("page9");
 
-const message = 'Canım, Ömrüm, Birtanem, Tek Aşkım, Bugün Senin İçin En Özel Günlerden Bir Tanesi. Yeni Bir Yaş Demek, Yeni Tecrübeler Demektir. 💖 ' +
-'Hayatımıza girdiğin günden beri, her anım daha anlamlı ve güzel. Seninle birlikte olmak, en büyük mutluluğum ve şansım. ' +
-'Bugün, tüm güzelliklerin, sevginin ve mutluluğun katlanarak artmasını diliyorum. Sağlık, huzur ve başarı seni hep takip etsin. ' +
-'Her yeni yaşında daha da parlayan, etrafına ışık saçan o güzel kalbin hiç solmasın. Hayallerin gerçek olsun, umutların daima taze kalsın. ' +
-'Seninle yaşlanmak, hayatın en güzel serüveni. İyi ki doğdun, iyi ki varsın. Her zaman yanında olacağım ve seni koşulsuz seveceğim. ' +
-'Nice güzel yıllara, canım aşkım! Doğum günün kutlu olsun, seni bütün kalbimle seviyorum! 🎉🎂❤️';
+        const message = 'Canım, Ömrüm, Birtanem, Tek Aşkım, Bugün Senin İçin En Özel Günlerden Bir Tanesi. Yeni Bir Yaş Demek, Yeni Tecrübeler Demektir. 💖 ' +
+        'Hayatımıza girdiğin günden beri, her anım daha anlamlı ve güzel. Seninle birlikte olmak, en büyük mutluluğum ve şansım. ' +
+        'Bugün, tüm güzelliklerin, sevginin ve mutluluğun katlanarak artmasını diliyorum. Sağlık, huzur ve başarı seni hep takip etsin. ' +
+        'Her yeni yaşında daha da parlayan, etrafına ışık saçan o güzel kalbin hiç solmasın. Hayallerin gerçek olsun, umutların daima taze kalsın. ' +
+        'Seninle yaşlanmak, hayatın en güzel serüveni. İyi ki doğdun, iyi ki varsın. Her zaman yanında olacağım ve seni koşulsuz seveceğim. ' +
+        'Nice güzel yıllara, canım aşkım! Doğum günün kutlu olsun, seni bütün kalbimle seviyorum! 🎉🎂❤️';
 
-let animationStarted = false;
-let timerId;
+        let animationStarted = false;
+        let timerId;
 
-function typeWriter(text, i = 0) {
-  if (i === 0) {
-    animatedText.textContent = '';
-  }
-  if (i < text.length) {
-    animatedText.textContent += text.charAt(i);
-    setTimeout(() => typeWriter(text, i + 1), 50);
-  }
-}
+        function typeWriter(text, i = 0) {
+            if (i === 0) {
+                animatedText.textContent = '';
+            }
+            if (i < text.length) {
+                animatedText.textContent += text.charAt(i);
+                setTimeout(() => typeWriter(text, i + 1), 50);
+            }
+        }
 
-function updateCountdown() {
-  const now = new Date();
-  const diff = unlockDate - now;
+        function updateCountdown() {
+            const now = new Date();
+            const diff = unlockDate - now;
 
-  if (diff <= 0) {
-    countdown.style.display = 'none';
-    lockedMessage.style.display = 'none';
-    realMessage.style.display = 'block';
-    typeWriter(message);
-    clearInterval(timerId);
-  } else {
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+            if (diff <= 0) {
+                countdown.style.display = 'none';
+                lockedMessage.style.display = 'none';
+                realMessage.style.display = 'block';
+                typeWriter(message);
+                clearInterval(timerId);
+            } else {
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+                const minutes = Math.floor((diff / (1000 * 60)) % 60);
 
-    countdown.textContent = `⏳ Geri sayım: ${days} Gün ${hours} Saat ${minutes} Dakika Kaldı.`;
-  }
-}
+                countdown.textContent = `⏳ Geri sayım: ${days} Gün ${hours} Saat ${minutes} Dakika Kaldı.`;
+            }
+        }
 
-function checkPage9Visibility() {
-  const style = window.getComputedStyle(page9);
-  if (style.display !== 'none' && !animationStarted) {
-    animationStarted = true;
-    
-    const now = new Date();
-    if (now >= unlockDate) {
-      countdown.style.display = 'none';
-      lockedMessage.style.display = 'none';
-      realMessage.style.display = 'block';
-      typeWriter(message);
-    } else {
-      realMessage.style.display = 'none';
-      lockedMessage.style.display = 'block';
-      countdown.style.display = 'block';
-      updateCountdown();
-      timerId = setInterval(updateCountdown, 1000);
-    }
-  }
-}
+        function checkPage9Visibility() {
+            const style = window.getComputedStyle(page9);
+            if (style.display !== 'none' && !animationStarted) {
+                animationStarted = true;
+                
+                const now = new Date();
+                if (now >= unlockDate) {
+                    countdown.style.display = 'none';
+                    lockedMessage.style.display = 'none';
+                    realMessage.style.display = 'block';
+                    typeWriter(message);
+                } else {
+                    realMessage.style.display = 'none';
+                    lockedMessage.style.display = 'block';
+                    countdown.style.display = 'block';
+                    updateCountdown();
+                    timerId = setInterval(updateCountdown, 1000);
+                }
+            }
+        }
 
-setInterval(checkPage9Visibility, 1000);
+        setInterval(checkPage9Visibility, 1000);
 
+        document.addEventListener("DOMContentLoaded", function () {
+            const lock = document.getElementById("lock");
+            const clickText = document.getElementById("click-text");
+            const loveMessage = document.getElementById("love-message");
+            const videoContainer = document.getElementById("video-container");
 
-    document.addEventListener("DOMContentLoaded", function () {
-    const lock = document.getElementById("lock");
-    const clickText = document.getElementById("click-text");
-    const loveMessage = document.getElementById("love-message");
-    const videoContainer = document.getElementById("video-container");
+            lock.addEventListener("click", function () {
+                lock.style.display = "none";
+                clickText.style.display = "none";
 
-    lock.addEventListener("click", function () {
-      lock.style.display = "none";
-      clickText.style.display = "none";
+                loveMessage.style.display = "block";
+                videoContainer.style.display = "block";
 
-      loveMessage.style.display = "block";
-      videoContainer.style.display = "block";
+                document.getElementById("myVideo").play();
+            });
+        });
 
-      document.getElementById("myVideo").play();
-    });
-  });
+        const button = document.getElementById('playButton');
+        const music = document.getElementById('arkaplanMuzik');
 
- 
-const button = document.getElementById('playButton');
-const music = document.getElementById('arkaplanMuzik');
-
-button.addEventListener('click', () => {
-  if (music.paused) {
-    music.play();
-    button.innerText = "🎵 Müzik Çalıyor";
-  } else {
-    music.pause();
-    button.innerText = "▶️ Müziği Çal";
-  }
-});
+        button.addEventListener('click', () => {
+            if (music.paused) {
+                music.play();
+                button.innerText = "🎵 Müzik Çalıyor";
+            } else {
+                music.pause();
+                button.innerText = "▶️ Müziği Çal";
+            }
+        });
 
         function checkPassword() {
             const enteredPassword = document.getElementById('password-input').value;
@@ -1178,7 +1207,6 @@ button.addEventListener('click', () => {
             if (currentWordDisplayIndex === words.length) {
                 clearInterval(heartBeatTextInterval); 
 
-               
                 fullSentenceDisplayTimeout = setTimeout(() => {
                     heartBeatTextElement.style.opacity = '0'; 
                     currentWordDisplayIndex = 0; 
@@ -1208,7 +1236,6 @@ button.addEventListener('click', () => {
                 heartBeatTextInterval = setInterval(displayNextWordOnBeat, 2000);
             }, 1000);
         }
-
 
         function showPage(pageId) {
             const pages = document.querySelectorAll('.page');
@@ -1241,256 +1268,201 @@ button.addEventListener('click', () => {
             }
         }
 
-        document.addEventListener('DOMContentLoaded', (event) => {
-            const clickableMessageBox = document.getElementById('clickableMessageBox');
-            const messagePrompt = document.getElementById('messagePrompt');
-            const actualMessage = document.getElementById('actualMessage');
-            const themeToggleButton = document.getElementById('theme-toggle-button');
-            const body = document.body;
+        document.getElementById('btn-page1').addEventListener('click', () => showPage('page1'));
+        document.getElementById('btn-page2').addEventListener('click', () => showPage('page2'));
+        document.getElementById('btn-page3').addEventListener('click', () => showPage('page3'));
+        document.getElementById('btn-page4').addEventListener('click', () => showPage('page4'));
+        document.getElementById('btn-page5').addEventListener('click', () => showPage('page5'));
+        document.getElementById('btn-page6').addEventListener('click', () => showPage('page6'));
+        document.getElementById('btn-page7').addEventListener('click', () => showPage('page7'));
+        document.getElementById('btn-page8').addEventListener('click', () => showPage('page8'));
+        document.getElementById('btn-page9').addEventListener('click', () => showPage('page9'));
 
-            if (clickableMessageBox) {
-                clickableMessageBox.addEventListener('click', function() {
-                    messagePrompt.style.display = 'none';
-                    actualMessage.style.display = 'block';
-                    actualMessage.style.fontSize = '1.0em';
-                });
-            }
-
-            function toggleTheme() {
-                if (body.classList.contains('dark-theme')) {
-                    body.classList.remove('dark-theme');
-                    themeToggleButton.textContent = '🌙';
-                    localStorage.setItem('theme', 'light');
-                } else {
-                    body.classList.add('dark-theme');
-                    themeToggleButton.textContent = '☀️';
-                    localStorage.setItem('theme', 'dark');
-                }
-            }
-
-            function applySavedTheme() {
-    const savedTheme = localStorage.getItem('theme');
-
-    if (savedTheme === 'dark' || savedTheme === null) {
-        body.classList.add('dark-theme');
-        themeToggleButton.textContent = '☀️';
-        if (savedTheme === null) {
-            localStorage.setItem('theme', 'dark');
+        if (document.getElementById('main-content').style.display === 'block') {
+            showPage('page1');
         }
-    } else {
-        body.classList.remove('dark-theme');
-        themeToggleButton.textContent = '🌙';
-    }
-}
-
-            applySavedTheme();
-
-            document.getElementById('btn-page1').addEventListener('click', () => showPage('page1'));
-            document.getElementById('btn-page2').addEventListener('click', () => showPage('page2'));
-            document.getElementById('btn-page3').addEventListener('click', () => showPage('page3'));
-            document.getElementById('btn-page4').addEventListener('click', () => showPage('page4'));
-            document.getElementById('btn-page5').addEventListener('click', () => showPage('page5'));
-            document.getElementById('btn-page6').addEventListener('click', () => showPage('page6'));
-            document.getElementById('btn-page7').addEventListener('click', () => showPage('page7'));
-            document.getElementById('btn-page8').addEventListener('click', () => showPage('page8'));
-            document.getElementById('btn-page9').addEventListener('click', () => showPage('page9'));
-
-            if (document.getElementById('main-content').style.display === 'block') {
-                showPage('page1');
-            }
-        });
 
         window.onload = function() {
             document.getElementById('password-input').focus();
         };
     </script>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const startDate = new Date(2024, 11, 15); 
+
+            const today = new Date(); 
+
+            const startOfStartDate = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate());
+            const startOfToday = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+
+            const diffMs = startOfToday.getTime() - startOfStartDate.getTime();
+
+            const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+
+            const currentDayNumber = diffDays + 1;
+
+            const range = 2; 
+            const container = document.getElementById('gun-container');
+
+            container.innerHTML = '';
+
+            for (let offset = -range; offset <= range; offset++) {
+                const span = document.createElement('span');
+                span.classList.add('gun');
+
+                const dayToShow = currentDayNumber + offset;
+
+                if (offset === 0) {
+                    span.classList.add('bugun');
+                }
+            
+                if (offset > 0) {
+                    span.classList.add('text-muted');
+                }
+            
+                span.textContent = dayToShow;
+                container.appendChild(span);
+            }
+
+            const relationshipTextElement = document.getElementById('relationship-days-text');
+            if (relationshipTextElement) {
+                relationshipTextElement.textContent = `Miniğim Sevgili Olalı Tam ${currentDayNumber} Gün Oldu,Bu Sayı Her Gün Artacak Otomatik Olarak Günümüzü Göstercek`;
+            }
+        });
+
+        const compliments = [
+            "Gülüşün güneşi kıskandırıyor 🌞",
+            "Seninle konuşmak en güzel terapi 💬",
+            "Işığın karanlıkları aydınlatır ✨",
+            "Sen dünyadaki en nadide çiçeksin 🌷",
+            "Varlığın bile huzur veriyor 🌼",
+            "Her bakışın kalbimi ısıtıyor ❤️",
+            "Seninle her an yılbaşına benziyor 🎄",
+            "Sesin en güzel melodi 🎶",
+            "Sen bir mucizesin 🌟",
+            "Seninle her şey mümkündür 🚀",
+            "İçtenliğin beni etkiliyor 🤗",
+            "Senin gibi biriyle tanıştığım için şanslıyım 🙏",
+            "Pozitif enerjin etrafa yayılıyor ✨",
+            "Gözlerin yıldızlar kadar parlak 👀✨",
+            "Her halinle çok güzelsin 🥰",
+            "Senin gücün takdire şayan 💪",
+            "Yanında zaman su gibi akıyor ⏳",
+            "Dünyayı daha güzel bir yer yapıyorsun 🌍💖",
+            "Kişiliğin büyüleyici ✨",
+            "Enerjin bulaşıcı, etrafına neşe saçıyorsun 🎉",
+            "Kalbinin güzelliği yüzüne yansımış 😊",
+            "En zor anlarda bile pozitif kalmayı başarıyorsun 👍",
+            "Hayata bakış açın ilham verici ✨",
+            "Yaratıcılığın sınır tanımıyor 🎨",
+            "Küçük detayları fark etmen harika 🔍",
+            "Senin samimiyetine güveniyorum 🤗",
+            "Gülüşünle içimi aydınlatıyorsun 😄",
+            "Çözüm odaklı olman takdire şayan ✅",
+            "Etrafındaki insanlara değer katıyorsun 🌟",
+            "Senin auran çok pozitif ve çekici ✨",
+            "Olumlu yaklaşımın her şeyi güzelleştiriyor 👍",
+            "Senin gibi arkadaşa sahip olmak bir lütuf 🙏",
+            "Kendine has bir tarzın var ve bu harika 🌟",
+            "Her zaman yanımda olduğunu bilmek güven veriyor 🤗",
+            "Ortamlara girdiğinde pozitif bir hava katıyorsun 🎉",
+            "Merhametin ve duyarlılığın çok etkileyici ❤️",
+            "Başarılarınla gurur duyuyorum 🚀",
+            "Hayallerinin peşinden gitme cesaretin ilham verici 💪",
+            "Seninle sıradan anlar bile özel hale geliyor ✨",
+            "İyi ki hayatımdasın! 🥰",
+            "Seninle vakit geçirmek paha biçilemez bir duygu 💎"
+        ];
+
+        const input = document.getElementById("nameInput");
+        const btn   = document.getElementById("sendBtn");
+        const overlay = document.getElementById("overlay");
+        const textDiv = document.getElementById("complimentText");
+
+        let currentIndex = 0;
+
+        btn.addEventListener("click", () => {
+            const val = input.value.trim().toLowerCase();
+            if (val === "rumeysa") {
+                textDiv.textContent = compliments[currentIndex];
+
+                currentIndex = (currentIndex + 1) % compliments.length;
+
+                overlay.classList.add("active");
+                const delay = 1000 + Math.random() * 4000;
+                setTimeout(() => {
+                    overlay.classList.remove("active");
+                }, delay);
+            } else {
+                alert("Lütfen Sadece “rumeysa”/“Rumeysa” Yazıp Gönderin 😊");
+            }
+        });
+
+        document.addEventListener('mousemove', function(e) {
+            const trailElement = document.createElement('div');
+            trailElement.classList.add('mouse-trail-element'); 
+
+            trailElement.style.left = e.clientX + 'px';
+            trailElement.style.top = e.clientY + 'px';
+
+            document.body.appendChild(trailElement);
+
+            setTimeout(function() {
+                trailElement.classList.add('fade-out');
+            }, 50);
+
+            setTimeout(function() {
+                trailElement.remove(); 
+            }, 800); 
+        });
+
+        window.addEventListener('load', () => {
+            const duration = 5 * 1000; 
+            const end = Date.now() + duration;
+            const canvas = document.getElementById('fireworks-canvas');
+            const myConfetti = confetti.create(canvas, {
+                resize: true,
+                useWorker: true
+            });
+
+            function randomInRange(min, max) {
+                return Math.random() * (max - min) + min;
+            }
+
+            const interval = setInterval(() => {
+                const timeLeft = end - Date.now();
+
+                if (timeLeft <= 0) {
+                    clearInterval(interval);
+                    canvas.style.display = 'none';
+                    return;
+                }
+
+                const particleCount = 60 * (timeLeft / duration);
+
+                myConfetti({
+                    particleCount: Math.floor(particleCount),
+                    startVelocity: 30,
+                    spread: 360,
+                    ticks: 50,
+                    origin: {
+                        x: randomInRange(0.1, 0.3),
+                        y: randomInRange(0.1, 0.3)
+                    }
+                });
+                myConfetti({
+                    particleCount: Math.floor(particleCount),
+                    startVelocity: 30,
+                    spread: 360,
+                    ticks: 50,
+                    origin: {
+                        x: randomInRange(0.7, 0.9),
+                        y: randomInRange(0.1, 0.3)
+                    }
+                });
+            }, 250);
+        });
+    </script>
 </body>
 </html>
-
-
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const startDate = new Date(2024, 11, 15); 
-
-    const today = new Date(); 
-
-    const startOfStartDate = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate());
-    const startOfToday = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-
-    const diffMs = startOfToday.getTime() - startOfStartDate.getTime();
-
-    const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-
-    const currentDayNumber = diffDays + 1;
-
-    const range = 2; 
-    const container = document.getElementById('gun-container');
-
-    container.innerHTML = '';
-
-    for (let offset = -range; offset <= range; offset++) {
-        const span = document.createElement('span');
-        span.classList.add('gun');
-
-        const dayToShow = currentDayNumber + offset;
-
-        if (offset === 0) {
-            span.classList.add('bugun');
-        }
-       
-        if (offset > 0) {
-             span.classList.add('text-muted');
-        }
-      
-        span.textContent = dayToShow;
-        container.appendChild(span);
-    }
-
-     const relationshipTextElement = document.getElementById('relationship-days-text');
-    if (relationshipTextElement) {
-        relationshipTextElement.textContent = `Miniğim Sevgili Olalı Tam ${currentDayNumber} Gün Oldu,Bu Sayı Her Gün Artacak Otomatik Olarak Günümüzü Göstercek`;
-    }
-});
-
-
- const compliments = [
-    "Gülüşün güneşi kıskandırıyor 🌞",
-    "Seninle konuşmak en güzel terapi 💬",
-    "Işığın karanlıkları aydınlatır ✨",
-    "Sen dünyadaki en nadide çiçeksin 🌷",
-    "Varlığın bile huzur veriyor 🌼",
-    "Her bakışın kalbimi ısıtıyor ❤️",
-    "Seninle her an yılbaşına benziyor 🎄",
-    "Sesin en güzel melodi 🎶",
-    "Sen bir mucizesin 🌟",
-    "Seninle her şey mümkündür 🚀",
-    "İçtenliğin beni etkiliyor 🤗",
-    "Senin gibi biriyle tanıştığım için şanslıyım 🙏",
-    "Pozitif enerjin etrafa yayılıyor ✨",
-    "Gözlerin yıldızlar kadar parlak 👀✨",
-    "Her halinle çok güzelsin 🥰",
-    "Senin gücün takdire şayan 💪",
-    "Yanında zaman su gibi akıyor ⏳",
-    "Dünyayı daha güzel bir yer yapıyorsun 🌍💖",
-    "Kişiliğin büyüleyici ✨",
-    "Enerjin bulaşıcı, etrafına neşe saçıyorsun 🎉",
-    "Kalbinin güzelliği yüzüne yansımış 😊",
-    "En zor anlarda bile pozitif kalmayı başarıyorsun 👍",
-    "Hayata bakış açın ilham verici ✨",
-    "Yaratıcılığın sınır tanımıyor 🎨",
-    "Küçük detayları fark etmen harika 🔍",
-    "Senin samimiyetine güveniyorum 🤗",
-    "Gülüşünle içimi aydınlatıyorsun 😄",
-    "Çözüm odaklı olman takdire şayan ✅",
-    "Etrafındaki insanlara değer katıyorsun 🌟",
-    "Senin auran çok pozitif ve çekici ✨",
-    "Olumlu yaklaşımın her şeyi güzelleştiriyor 👍",
-    "Senin gibi arkadaşa sahip olmak bir lütuf 🙏",
-    "Kendine has bir tarzın var ve bu harika 🌟",
-    "Her zaman yanımda olduğunu bilmek güven veriyor 🤗",
-    "Ortamlara girdiğinde pozitif bir hava katıyorsun 🎉",
-    "Merhametin ve duyarlılığın çok etkileyici ❤️",
-    "Başarılarınla gurur duyuyorum 🚀",
-    "Hayallerinin peşinden gitme cesaretin ilham verici 💪",
-    "Seninle sıradan anlar bile özel hale geliyor ✨",
-    "İyi ki hayatımdasın! 🥰",
-    "Seninle vakit geçirmek paha biçilemez bir duygu 💎"
-];
-
-
-  const input = document.getElementById("nameInput");
-  const btn   = document.getElementById("sendBtn");
-  const overlay = document.getElementById("overlay");
-  const textDiv = document.getElementById("complimentText");
-
-    let currentIndex = 0;
-
-    btn.addEventListener("click", () => {
-      const val = input.value.trim().toLowerCase();
-      if (val === "rumeysa") {
-        textDiv.textContent = compliments[currentIndex];
-
-        currentIndex = (currentIndex + 1) % compliments.length;
-
-        overlay.classList.add("active");
-        const delay = 1000 + Math.random() * 4000;
-        setTimeout(() => {
-          overlay.classList.remove("active");
-        }, delay);
-      } else {
-        alert("Lütfen Sadece “rumeysa”/“Rumeysa” Yazıp Gönderin 😊");
-      }
-    });
-
-
-  document.addEventListener('mousemove', function(e) {
-    const trailElement = document.createElement('div');
-    trailElement.classList.add('mouse-trail-element'); 
-
-    trailElement.style.left = e.clientX + 'px';
-    trailElement.style.top = e.clientY + 'px';
-
-    document.body.appendChild(trailElement);
-
-    setTimeout(function() {
-        trailElement.classList.add('fade-out');
-    }, 50);
-
-    setTimeout(function() {
-        trailElement.remove(); 
-    }, 800); 
-});
-
-
-
- window.addEventListener('load', () => {
-      const duration = 5 * 1000; 
-      const end = Date.now() + duration;
-      const canvas = document.getElementById('fireworks-canvas');
-      const myConfetti = confetti.create(canvas, {
-        resize: true,
-        useWorker: true
-      });
-
-      function randomInRange(min, max) {
-        return Math.random() * (max - min) + min;
-      }
-
-      const interval = setInterval(() => {
-        const timeLeft = end - Date.now();
-
-        if (timeLeft <= 0) {
-          clearInterval(interval);
-          canvas.style.display = 'none';
-          return;
-        }
-
-        const particleCount = 60 * (timeLeft / duration);
-
-        myConfetti({
-          particleCount: Math.floor(particleCount),
-          startVelocity: 30,
-          spread: 360,
-          ticks: 50,
-          origin: {
-            x: randomInRange(0.1, 0.3),
-            y: randomInRange(0.1, 0.3)
-          }
-        });
-        myConfetti({
-          particleCount: Math.floor(particleCount),
-          startVelocity: 30,
-          spread: 360,
-          ticks: 50,
-          origin: {
-            x: randomInRange(0.7, 0.9),
-            y: randomInRange(0.1, 0.3)
-          }
-        });
-      }, 250);
-    });
-
-</script>
