@@ -758,6 +758,36 @@ body {
     border-radius: 8px;
   }
 
+
+   #letter {
+    width: 300px;
+    height: 200px;
+    border: 2px solid #555;
+    border-radius: 10px;
+    margin: 50px auto;
+    padding: 20px;
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.2);
+    background: #fff8dc;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  #letter.locked {
+    background: #ccc;
+    color: #666;
+    cursor: default;
+  }
+  #letter.open {
+    cursor: default;
+    text-align: left;
+    white-space: pre-wrap;
+  }
+
+  
     </style>
 </head>
 <body>
@@ -927,6 +957,23 @@ body {
   </div>
 </div>
 
+<div id="page9" class="page"> 
+  <div class="page9-theme" style="text-align: center; padding: 30px;">
+    <h1>💌 Doğum Günü Mesajı</h1>
+    <p>Bu mesaj <strong>8 Kasım 2025</strong>'te açılacak yani doğum gününde ❤️</p>
+
+    <div id="countdown" style="font-size: 24px; margin: 20px 0; color: #555;"></div>
+
+    <div id="lockedMessage" style="margin-top: 20px; font-size: 17px; color: #888;">
+      ⏳ Henüz zamanı değil... Lütfen sabret.
+    </div>
+
+    <div id="realMessage" style="margin-top: 20px; font-size: 20px; background: #fff0f5; padding: 20px; border-radius: 10px; display: none; min-height: 120px; color: #333; cursor: default;">
+      <span id="animatedText"></span>
+    </div>
+  </div>
+</div>
+
   <div id="page4" class="page">
   <div class="page4-theme">
     <div class="col-md-12 d-flex align-items-center justify-content-center">
@@ -952,6 +999,7 @@ body {
             <button id="btn-page6">6</button>
             <button id="btn-page7">7</button>
             <button id="btn-page8">8</button>
+            <button id="btn-page9">9</button>
 
         </div>
     
@@ -976,7 +1024,79 @@ body {
     
     <button id="theme-toggle-button">🌙</button>
 
+
     <script>
+
+const unlockDate = new Date("2025-11-08T00:00:00");
+const realMessage = document.getElementById("realMessage");
+const lockedMessage = document.getElementById("lockedMessage");
+const countdown = document.getElementById("countdown");
+const animatedText = document.getElementById("animatedText");
+const page9 = document.getElementById("page9");
+
+const message = 'Canım, Ömrüm, Birtanem, Tek Aşkım, Bugün Senin İçin En Özel Günlerden Bir Tanesi. Yeni Bir Yaş Demek, Yeni Tecrübeler Demektir. 💖 ' +
+'Hayatımıza girdiğin günden beri, her anım daha anlamlı ve güzel. Seninle birlikte olmak, en büyük mutluluğum ve şansım. ' +
+'Bugün, tüm güzelliklerin, sevginin ve mutluluğun katlanarak artmasını diliyorum. Sağlık, huzur ve başarı seni hep takip etsin. ' +
+'Her yeni yaşında daha da parlayan, etrafına ışık saçan o güzel kalbin hiç solmasın. Hayallerin gerçek olsun, umutların daima taze kalsın. ' +
+'Seninle yaşlanmak, hayatın en güzel serüveni. İyi ki doğdun, iyi ki varsın. Her zaman yanında olacağım ve seni koşulsuz seveceğim. ' +
+'Nice güzel yıllara, canım aşkım! Doğum günün kutlu olsun, seni bütün kalbimle seviyorum! 🎉🎂❤️';
+
+let animationStarted = false;
+let timerId;
+
+function typeWriter(text, i = 0) {
+  if (i === 0) {
+    animatedText.textContent = '';
+  }
+  if (i < text.length) {
+    animatedText.textContent += text.charAt(i);
+    setTimeout(() => typeWriter(text, i + 1), 50);
+  }
+}
+
+function updateCountdown() {
+  const now = new Date();
+  const diff = unlockDate - now;
+
+  if (diff <= 0) {
+    countdown.style.display = 'none';
+    lockedMessage.style.display = 'none';
+    realMessage.style.display = 'block';
+    typeWriter(message);
+    clearInterval(timerId);
+  } else {
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+
+    countdown.textContent = `⏳ Geri sayım: ${days} Gün ${hours} Saat ${minutes} Dakika Kaldı.`;
+  }
+}
+
+function checkPage9Visibility() {
+  const style = window.getComputedStyle(page9);
+  if (style.display !== 'none' && !animationStarted) {
+    animationStarted = true;
+    
+    const now = new Date();
+    if (now >= unlockDate) {
+      countdown.style.display = 'none';
+      lockedMessage.style.display = 'none';
+      realMessage.style.display = 'block';
+      typeWriter(message);
+    } else {
+      realMessage.style.display = 'none';
+      lockedMessage.style.display = 'block';
+      countdown.style.display = 'block';
+      updateCountdown();
+      timerId = setInterval(updateCountdown, 1000);
+    }
+  }
+}
+
+setInterval(checkPage9Visibility, 1000);
+
+
     document.addEventListener("DOMContentLoaded", function () {
     const lock = document.getElementById("lock");
     const clickText = document.getElementById("click-text");
@@ -1173,6 +1293,7 @@ button.addEventListener('click', () => {
             document.getElementById('btn-page6').addEventListener('click', () => showPage('page6'));
             document.getElementById('btn-page7').addEventListener('click', () => showPage('page7'));
             document.getElementById('btn-page8').addEventListener('click', () => showPage('page8'));
+            document.getElementById('btn-page9').addEventListener('click', () => showPage('page9'));
 
             if (document.getElementById('main-content').style.display === 'block') {
                 showPage('page1');
