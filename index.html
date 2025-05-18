@@ -787,7 +787,56 @@ body {
     white-space: pre-wrap;
   }
 
+      
   
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  body {
+      background-color: #121212;
+      font-family: Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .top-row, .bottom-row {
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .center-wrapper {
+      flex: 1;                    
+      display: flex;              
+      justify-content: center;    
+      align-items: center;      
+    }
+
+    .box {
+      background-color: #2e2e2e;
+      border: 2px solid #00ffff;
+      border-radius: 10px;
+      padding: 30px 40px;
+      text-align: center;
+      cursor: pointer;
+      transition: transform .2s;
+    }
+    .box:hover {
+      transform: scale(1.03);
+    }
+
+    .clickText {
+      color: #c084fc;
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .hiddenMessage {
+      color: #ff00c895;
+      font-size: 18px;
+      display: none;
+    }
+
     </style>
 </head>
 <body>
@@ -818,7 +867,7 @@ body {
 
     <div id="password-screen">
         <h2><span class="heart-icon">💖</span> Bu Site İkimiz İçin Özel <span class="heart-icon">💖</span></h2>
-        <p>Şifreyi Öğrenmek İçin Ara Beni Balım 😉</p>
+        <p>Şifreyi Öğrenmek İçin Telefondan Beni Ara Aşkım</p>
         <input type="password" id="password-input" placeholder="Şifre Girişi Yapınız">
         <button onclick="checkPassword()">Giriş Yap</button>
         <p id="error-message"></p>
@@ -864,12 +913,17 @@ body {
                 <img src="https://cdn.glitch.global/e40415bc-f90e-4560-9f91-2c40615b1cda/e6537904-1d38-4366-8df1-e8d0e90f98f0.image.png?v=1747054476901" alt="Fotoğraf Anılarımız" class="round-photo">
                 <img src="https://cdn.glitch.global/e40415bc-f90e-4560-9f91-2c40615b1cda/9f2b8ba1-dac4-4b7d-82c3-90cfcafd2e81.image.png?v=1747054729023" alt="Kalp eller" class="round-photo">
             </div>
+        
+    <div class="center-wrapper">
+    <div class="box" onclick="showMessage()">
+      <div id="clickText" class="clickText">Mesajı Görmek İçin Tıkla!</div>
+      <div id="hiddenMessage" class="hiddenMessage">Şunu Unutma Sevgilim Seninle Evlenip Bir Yuva Kuracağım,Kız Çocuğumuz Olup Ona Cici Elbiseler Alacağız.</div>
+    </div>
+  </div>
+        
+          </div>
 
-            <div id="clickableMessageBox">
-                <p id="messagePrompt" class="click-prompt">Mesajı Görmek İçin Tıkla!</p>
-                <p id="actualMessage" class="footer-heart hidden-content">Şunu Unutmaki Seninle Evlenecem Ve Kız Çocuğumuz Olacak. ❤️</p>
-            </div>
-        </div>
+        
 
         
 <div id="page2" class="page">
@@ -1084,6 +1138,11 @@ body {
                 setTimeout(() => typeWriter(text, i + 1), 50);
             }
         }
+
+         function showMessage() {
+      document.getElementById("clickText").style.display = "none";
+      document.getElementById("hiddenMessage").style.display = "block";
+    }
 
         function updateCountdown() {
             const now = new Date();
