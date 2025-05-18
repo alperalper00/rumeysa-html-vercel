@@ -34,13 +34,29 @@ app.post('/login', (req, res) => {
   }
 });
 
-if (!window.location.hostname.includes('localhost')) {
-  // Şifre kontrolünü göster
-  showPasswordPrompt();
-} else {
-  // Localhost ise doğrudan siteyi aç
-  openSiteDirectly();
-}
+window.onload = function () {
+  const loginContainer = document.getElementById('login-container');
+  const mainContent = document.getElementById('main-content');
+  const passwordInput = document.getElementById('password-input');
+  const submitBtn = document.getElementById('submit-btn');
+
+  // Eğer domain localhost DEĞİLSE şifre sor
+  if (!window.location.hostname.includes('localhost')) {
+    loginContainer.style.display = 'block';
+  } else {
+    mainContent.style.display = 'block';
+  }
+
+  submitBtn.addEventListener('click', () => {
+    const password = passwordInput.value;
+    if (password === '1234') {
+      loginContainer.style.display = 'none';
+      mainContent.style.display = 'block';
+    } else {
+      alert('Şifre yanlış!');
+    }
+  });
+};
 
 app.listen(PORT, () => {
   console.log(`Sunucu http://localhost:${PORT} adresinde çalışıyor`);
