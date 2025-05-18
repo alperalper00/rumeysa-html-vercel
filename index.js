@@ -34,6 +34,14 @@ app.post('/login', (req, res) => {
   }
 });
 
+if (!window.location.hostname.includes('localhost')) {
+  // Şifre kontrolünü göster
+  showPasswordPrompt();
+} else {
+  // Localhost ise doğrudan siteyi aç
+  openSiteDirectly();
+}
+
 app.listen(PORT, () => {
   console.log(`Sunucu http://localhost:${PORT} adresinde çalışıyor`);
 });
