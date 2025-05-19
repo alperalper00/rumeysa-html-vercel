@@ -4,8 +4,11 @@
         {
             "src": "index.html",
             "use": "@vercel/static"
-        }
-
+        },
+    {
+      "src": "message.js",
+      "use": "@vercel/node"
+    }
     ],
     "routes": [
         {
@@ -19,6 +22,10 @@
             "src": "/(.*)",
             "dest": "/404.html",
             "status": 404
-        }
+        },
+    {
+      "src": "/api/message",
+      "dest": "message.js"
+    }
     ]
 }
