@@ -1086,6 +1086,16 @@ body {
 
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script>
+
+   function showMessage() {
+            var hidden = document.getElementById('hiddenMessage');
+            var clickText = document.getElementById('clickText');
+            if (hidden && clickText) {
+                hidden.style.display = 'block';
+                clickText.style.display = 'none';
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', function () {
             const themeToggleButton = document.getElementById('theme-toggle-button');
             const body = document.body;
