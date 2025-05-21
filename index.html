@@ -335,6 +335,7 @@ body {
             transform: scale(1.05);
         }
 
+        /* Dark Theme Styles */
         body.dark-theme {
             background-color: #282c34;
             color: #f8f8f2;
@@ -1081,6 +1082,7 @@ body {
     
 
     <canvas id="fireworks-canvas"></canvas>
+    <button id="theme-toggle-button">🌙</button>
 
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script>
@@ -1094,35 +1096,41 @@ body {
             }
         }
 
-        document.addEventListener('DOMContentLoaded', function () {
-            const themeToggleButton = document.getElementById('theme-toggle-button');
-            const body = document.body;
-            function toggleTheme() {
-                if (body.classList.contains('dark-theme')) {
-                    body.classList.remove('dark-theme');
-                    themeToggleButton.textContent = '🌙';
-                    localStorage.setItem('theme', 'light');
-                } else {
-                    body.classList.add('dark-theme');
-                    themeToggleButton.textContent = '☀️';
-                    localStorage.setItem('theme', 'dark');
-                }
-            }
-            function applySavedTheme() {
-                const savedTheme = localStorage.getItem('theme');
-                if (savedTheme === 'dark') {
-                    body.classList.add('dark-theme');
-                    themeToggleButton.textContent = '☀️';
-                } else {
-                    body.classList.remove('dark-theme');
-                    themeToggleButton.textContent = '🌙';
-                }
-            }
-            if (themeToggleButton) {
-                themeToggleButton.addEventListener('click', toggleTheme);
-            }
-            applySavedTheme();
-        });
+      document.addEventListener('DOMContentLoaded', function () {
+    const themeToggleButton = document.getElementById('theme-toggle-button');
+    const body = document.body;
+
+    function toggleTheme() {
+        if (body.classList.contains('dark-theme')) {
+            body.classList.remove('dark-theme');
+            themeToggleButton.textContent = '🌙';
+            localStorage.setItem('theme', 'light');
+        } else {
+            body.classList.add('dark-theme');
+            themeToggleButton.textContent = '☀️';
+            localStorage.setItem('theme', 'dark');
+        }
+    }
+
+    function applySavedTheme() {
+        const savedTheme = localStorage.getItem('theme');
+
+        if (savedTheme === 'light') {
+            body.classList.remove('dark-theme');
+            themeToggleButton.textContent = '🌙';
+        } else {
+            body.classList.add('dark-theme');  
+            themeToggleButton.textContent = '☀️';
+        }
+    }
+
+    if (themeToggleButton) {
+        themeToggleButton.addEventListener('click', toggleTheme);
+    }
+
+    applySavedTheme();
+});
+
 
     const unlockDate   = new Date("2025-11-08T00:00:00Z");
     const countdown    = document.getElementById("countdown");
@@ -1158,7 +1166,7 @@ body {
     function updateCountdown() {
       const diff = unlockDate - new Date();
       if (diff <= 0) {
-        fetchAndShowMessage();  
+        fetchAndShowMessage();  // sadece buradan çağırıyoruz
       } else {
         const days    = Math.floor(diff / 86400000);
         const hours   = Math.floor((diff % 86400000) / 3600000);
