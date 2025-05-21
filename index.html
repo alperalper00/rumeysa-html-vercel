@@ -25,32 +25,36 @@
             min-height: 100vh;
             transition: background-color 0.5s, color 0.5s;
         }
-        /* Sabit sağ ve sol kalpler */
-        .side-heart {
-            position: fixed;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 2.5em;
-            z-index: 1002;
-            animation: side-heart-move 2s infinite alternate;
-            pointer-events: none;
-            user-select: none;
+        /* Scrollbar renkleri */
+        ::-webkit-scrollbar {
+            width: 10px;
+            background: #ff024e;
         }
-        .side-heart.left {
-            left: 10px;
-            color: #e91e63;
-            animation-delay: 0s;
+        ::-webkit-scrollbar-thumb {
+            background: #e91e63;
+            border-radius: 15px;
         }
-        .side-heart.right {
-            right: 10px;
-            color: #e91e63;
-            animation-delay: 1s;
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ad1457;
         }
-        @keyframes side-heart-move {
-            0%   { transform: translateY(-50%) scale(1) rotate(-10deg); }
-            50%  { transform: translateY(-55%) scale(1.15) rotate(10deg); }
-            100% { transform: translateY(-50%) scale(1) rotate(-10deg); }
+        /* Firefox */
+        html {
+            scrollbar-color: #fff3f7 #e91e63;
+            scrollbar-width: thin;
         }
+        body.dark-theme ::-webkit-scrollbar-thumb {
+            background: #bb86fc;
+        }
+        body.dark-theme ::-webkit-scrollbar-thumb:hover {
+            background: #6200ee;
+        }
+        body.dark-theme ::-webkit-scrollbar {
+            background: #282c34;
+        }
+        body.dark-theme html {
+            scrollbar-color: #bb86fc #282c34;
+        }
+       
         .heart-fall-container {
             position: fixed;
             top: 0; left: 0;
@@ -167,52 +171,7 @@
             transition: background-color 0.5s, box-shadow 0.5s;
             width: 98vw;
         }
-        .main-content::before, .main-content::after {
-            content: '❤️';
-            font-size: 1.5em; /* Eskiden 2.5em idi, küçültüldü */
-            color: #e91e63;
-            position: absolute;
-            opacity: 0.7;
-            transition: color 0.5s;
-            animation: main-heart-move 1.5s infinite alternate;
-        }
-        .main-content::before {
-            top: 15px;
-            left: 20px;
-            transform: rotate(-15deg);
-            animation-delay: 0s;
-        }
-        .main-content::after {
-            bottom: 15px;
-            right: 20px;
-            transform: rotate(15deg);
-            animation-delay: 0.75s;
-        }
-        @keyframes main-heart-move {
-            0%   { transform: translateY(0) scale(1) rotate(var(--angle, 0deg)); }
-            50%  { transform: translateY(-8px) scale(1.15) rotate(var(--angle, 0deg)); }
-            100% { transform: translateY(0) scale(1) rotate(var(--angle, 0deg)); }
-        }
-        h1 {
-            color: #e91e63;
-            font-size: 2em;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-            margin-bottom: 10px;
-            transition: color 0.5s;
-            word-break: break-word;
-        }
-        h1 .heart-icon {
-            font-size: 0.8em;
-            vertical-align: middle;
-            transition: color 0.5s;
-        }
-        h2 {
-            color: #ad1457;
-            padding-bottom: 8px;
-            margin-top: 30px;
-            transition: color 0.5s, border-color 0.5s;
-            font-size: 1.2em;
-        }
+        
         img {
             max-width: 100%;
             height: auto;
@@ -715,6 +674,7 @@
     </style>
 </head>
 <body>
+
 
 
 
