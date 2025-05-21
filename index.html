@@ -335,7 +335,6 @@ body {
             transform: scale(1.05);
         }
 
-        /* Dark Theme Styles */
         body.dark-theme {
             background-color: #282c34;
             color: #f8f8f2;
@@ -1082,7 +1081,6 @@ body {
     
 
     <canvas id="fireworks-canvas"></canvas>
-    <button id="theme-toggle-button">🌙</button>
 
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script>
@@ -1160,7 +1158,7 @@ body {
     function updateCountdown() {
       const diff = unlockDate - new Date();
       if (diff <= 0) {
-        fetchAndShowMessage();  // sadece buradan çağırıyoruz
+        fetchAndShowMessage();  
       } else {
         const days    = Math.floor(diff / 86400000);
         const hours   = Math.floor((diff % 86400000) / 3600000);
