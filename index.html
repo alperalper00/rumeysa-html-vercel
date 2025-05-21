@@ -25,6 +25,32 @@
             min-height: 100vh;
             transition: background-color 0.5s, color 0.5s;
         }
+        /* Sabit sağ ve sol kalpler */
+        .side-heart {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2.5em;
+            z-index: 1002;
+            animation: side-heart-move 2s infinite alternate;
+            pointer-events: none;
+            user-select: none;
+        }
+        .side-heart.left {
+            left: 10px;
+            color: #e91e63;
+            animation-delay: 0s;
+        }
+        .side-heart.right {
+            right: 10px;
+            color: #e91e63;
+            animation-delay: 1s;
+        }
+        @keyframes side-heart-move {
+            0%   { transform: translateY(-50%) scale(1) rotate(-10deg); }
+            50%  { transform: translateY(-55%) scale(1.15) rotate(10deg); }
+            100% { transform: translateY(-50%) scale(1) rotate(-10deg); }
+        }
         .heart-fall-container {
             position: fixed;
             top: 0; left: 0;
@@ -148,16 +174,24 @@
             position: absolute;
             opacity: 0.7;
             transition: color 0.5s;
+            animation: main-heart-move 1.5s infinite alternate;
         }
         .main-content::before {
             top: 15px;
             left: 20px;
             transform: rotate(-15deg);
+            animation-delay: 0s;
         }
         .main-content::after {
             bottom: 15px;
             right: 20px;
             transform: rotate(15deg);
+            animation-delay: 0.75s;
+        }
+        @keyframes main-heart-move {
+            0%   { transform: translateY(0) scale(1) rotate(var(--angle, 0deg)); }
+            50%  { transform: translateY(-8px) scale(1.15) rotate(var(--angle, 0deg)); }
+            100% { transform: translateY(0) scale(1) rotate(var(--angle, 0deg)); }
         }
         h1 {
             color: #e91e63;
@@ -300,7 +334,12 @@
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
         }
         body.dark-theme .main-content::before,
-        body.dark-theme .main-content::after { color: #bb86fc; font-size: 1.5em; } /* Eskiden 2.5em idi, küçültüldü */
+        body.dark-theme .main-content::after { color: #bb86fc; font-size: 1.5em; animation-name: main-heart-move-dark; }
+        @keyframes main-heart-move-dark {
+            0%   { transform: translateY(0) scale(1) rotate(var(--angle, 0deg)); }
+            50%  { transform: translateY(-8px) scale(1.15) rotate(var(--angle, 0deg)); }
+            100% { transform: translateY(0) scale(1) rotate(var(--angle, 0deg)); }
+        }
         body.dark-theme h1 { color: #bb86fc; }
         body.dark-theme h1 .heart-icon { color: #bb86fc; }
         body.dark-theme h2 {
@@ -326,6 +365,7 @@
         }
         body.dark-theme #theme-toggle-button { background-color: #03dac6; }
         body.dark-theme #theme-toggle-button:hover { background-color: #018786; }
+        body.dark-theme .side-heart { color: #bb86fc; }
         .pagination-buttons {
             text-align: center;
             margin-top: 30px;
@@ -670,11 +710,15 @@
             h1 { font-size: 1.3em; }
             h2 { font-size: 1.1em; }
             ul li { font-size: 0.97em; }
+            .side-heart { font-size: 1.7em; }
         }
     </style>
 </head>
 <body>
 
+<!-- Sabit sağ ve sol hareketli kalpler -->
+<div class="side-heart left">❤️</div>
+<div class="side-heart right">❤️</div>
 
    <div class="heart-fall-container" id="heart-container">
         <div class="rising-heart rh1">❤️</div>
