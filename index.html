@@ -1087,7 +1087,7 @@ body {
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script>
 
-   function showMessage() {
+    function showMessage() {
             var hidden = document.getElementById('hiddenMessage');
             var clickText = document.getElementById('clickText');
             if (hidden && clickText) {
@@ -1227,33 +1227,60 @@ body {
             }
         });
 
-        function checkPassword() {
-            const enteredPassword = document.getElementById('password-input').value;
-            const errorMessageElement = document.getElementById('error-message');
-            const correctPassword = "8112004";
-            const heartContainer = document.getElementById('heart-container');
+async function checkPassword() {
+      const enteredPassword = document.getElementById('password-input').value;
+      const errorMessageElement = document.getElementById('error-message');
+      const heartContainer = document.getElementById('heart-container');
 
-            if (enteredPassword === correctPassword) {
-                document.getElementById('password-screen').style.display = 'none';
-                document.getElementById('main-content').style.display = 'block';
-                if (heartContainer) {
-                    heartContainer.style.display = 'none';
-                }
-                document.body.style.overflow = 'auto';
-                showPage('page1'); 
-            } else {
-                errorMessageElement.textContent = 'Şifreyi Tek Benim Hatun Biliyor.';
-                document.getElementById('password-input').value = '';
-                document.getElementById('password-input').focus();
-            }
-        }
+      if (!enteredPassword) {
+        errorMessageElement.textContent = 'Lütfen Şifreyi Giriniz.';
+        return;
+      }
 
-        document.getElementById('password-input').addEventListener('keypress', function(event) {
-            if (event.key === 'Enter') {
-                event.preventDefault();
-                checkPassword();
-            }
+      try {
+        const response = await fetch('/check-password', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ password: enteredPassword })
         });
+
+        const data = await response.json();
+
+        if (response.ok && data.success) {
+          document.getElementById('password-screen').style.display = 'none';
+          document.getElementById('main-content').style.display = 'block';
+          if (heartContainer) {
+            heartContainer.style.display = 'none';
+          }
+          document.body.style.overflow = 'auto';
+          showPage('page1');
+        } else {
+          errorMessageElement.textContent = data.message || 'Şifre doğrulaması başarısız.';
+          document.getElementById('password-input').value = '';
+          document.getElementById('password-input').focus();
+        }
+      } catch (err) {
+        console.error('Şifre doğrulama hatası:', err);
+        errorMessageElement.textContent = 'Sunucuya bağlanırken bir hata oldu.';
+      }
+    }
+
+    document.getElementById('submit-btn').addEventListener('click', () => {
+      checkPassword();
+    });
+
+    document.getElementById('password-input').addEventListener('keypress', (event) => {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        checkPassword();
+      }
+    });
+
+    function showPage(pageId) {
+      console.log(pageId + ' sayfası gösteriliyor.');
+    }
 
         let phrase = "Bu Kalp Sen Olduğun Sürece Her Daim SEN Diye Atacak Seni Seviyorum ❤️";
         let words = phrase.split(' ');
