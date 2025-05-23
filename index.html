@@ -774,6 +774,57 @@ h2 {
   100% { opacity: 0; } 
 }
 
+    #lock {
+        font-size: 8px;
+        position: relative;
+        width: 18em;
+        height: 13em;
+        border-radius: 2em;
+        top: 10em;
+        box-sizing: border-box;
+        border: 3.5em solid red;
+        border-right-width: 7.5em;
+        border-left-width: 7.5em;
+        margin: 0 0 6rem 0;
+        background: #ffd6e0;
+        display: inline-block;
+        transition: opacity 0.8s, transform 0.8s;
+        cursor: pointer;
+      }
+      #lock:before {
+        content: "";
+        box-sizing: border-box;
+        position: absolute;
+        border: 2.5em solid red;
+        width: 14em;
+        height: 12em;
+        left: 50%;
+        margin-left: -7em;
+        top: -12em;
+        border-top-left-radius: 7em;
+        border-top-right-radius: 7em;
+        border-bottom: none;
+        background: transparent;
+      }
+      #lock:after {
+        content: "";
+        box-sizing: border-box;
+        position: absolute;
+        border: 1em solid red;
+        width: 5em;
+        height: 8em;
+        border-radius: 2.5em;
+        left: 50%;
+        top: -1em;
+        margin-left: -2.5em;
+        background: transparent;
+      }
+      #lock.hide {
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.7s;
+      }
+
     body { background: #ffe6f0; font-family: 'Comic Sans MS'; text-align: center; padding: 30px; }
     textarea { width: 90%; height: 120px; padding: 10px; border-radius: 10px; }
     button { padding: 10px 20px; margin-top: 10px; background: #ff66a3; color: white; border: none; border-radius: 10px; cursor: pointer; }
@@ -916,18 +967,18 @@ h2 {
   </div>
 </div>
 
-        <div id="page5" class="page">
-        <div class="page5-theme">
+<div id="page5" class="page">
+    <div class="page5-theme">
         <div class="compliment-container">
-      <input id="nameInput" type="text" placeholder="Adını Gir Aşkım " />
-      <button id="sendBtn">Gönder</button>
-      <p style="text-align: center; margin-top: 50px; font-size: 1.2em;">
-      Aşkım Sadece Adını Yazınca Çalışır Burası,Her Seferinde Farklı İltifat Eder ❤️
+            <input id="nameInput" type="text" placeholder="Adını Gir Aşkım " />
+            <button id="sendBtn">Gönder</button>
+            <p id="compliment-typewriter" style="text-align: center; margin-top: 50px; font-size: 1.2em;">
             </p>
+        </div>
     </div>
-    
-  </div>
 </div>
+
+
 
 <div id="overlay" class="overlay">
   <div id="complimentText" class="compliment-text"></div>
@@ -944,23 +995,33 @@ h2 {
 </div>
 
 <div id="page7" class="page" style="text-align:center; padding:30px; font-family:sans-serif;">
-  <img id="lock" src="https://cdn-icons-png.flaticon.com/512/3064/3064197.png" alt="Kilit" style="width:120px; cursor:pointer; transition: opacity 0.8s;">
+    <div style="position: relative; display: inline-block;">
+        <div id="lock"></div>
+    </div>
 
-  <div id="click-text" style="margin-top:10px; font-size:18px; color:#d4006a;">
-    Kilide Bas Aşkım ❤️
-  </div>
+    <div id="click-text" style="margin-top:10px; font-size:24px; color:#d4006a; font-weight:bold;">
+        Kilide Bas Aşkım ❤️
+    </div>
 
-  <div id="love-message" style="display:none; margin-top:20px; font-size:20px; color:red; font-weight:bold;">
+    <div id="preparing-message" style="display:none; margin-top:20px; font-size:20px; color:#e91e63; font-weight:bold;">
+        Videon hazırlanıyor şekerim...
+    </div>
+
+    <div id="love-message" style="display:none; margin-top:20px; font-size:20px; color:red; font-weight:bold;">
    İkimizi Anlatan Video, İmkansız Diye Bir Şey Yoktur Biz İstersek Her Şey Olur Aşkım. ❤️
   </div>
 
-  <div id="video-container" style="margin-top:30px; display:none;">
-    <video id="myVideo" controls>
+  <div id="video-container" style="margin-top:20px; display:none;">
+    <video id="myVideo7" controls>
+        
       <source src="https://cdn.glitch.global/91c07bd8-05ec-4beb-99c0-37365f067aa9/Ate%C5%9F%20ve%20Su%E2%80%99nun%20Unutulmaz%20An%C4%B1!%F0%9F%A5%BA%20%23ate%C5%9Fvesu%20%23a%C5%9Fk%20%23%C3%A7izgifilm%20%23animasyon%20%23ke%C5%9Ffet%20%20%23duygusal%20%23h%C3%BCz%C3%BCn.mp4?v=1747507665565" type="video/mp4">
       Tarayıcınız video etiketini desteklemiyor.
     </video>
   </div>
 </div>
+   
+
+
 
 <div id="page8" class="page">
   <div id="message">İkimizin Aşkla Dolu Sarılması 🤍🎉</div>
@@ -1048,7 +1109,49 @@ h2 {
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
-    
+
+    <script>
+    const complimentTypewriterText = "Aşkım Sadece Adını Yazınca Çalışır Burası, Her Seferinde Farklı İltifat Eder ❤️";
+    const complimentTypewriterEl = document.getElementById("compliment-typewriter");
+    let complimentTypewriterIndex = 0;
+    let complimentTypewriterTimeout = null;
+
+    function startComplimentTypewriter() {
+        complimentTypewriterEl.textContent = "";
+        complimentTypewriterIndex = 0;
+        function typeCompliment() {
+            if (complimentTypewriterIndex <= complimentTypewriterText.length) {
+                complimentTypewriterEl.textContent = complimentTypewriterText.slice(0, complimentTypewriterIndex);
+                complimentTypewriterIndex++;
+                complimentTypewriterTimeout = setTimeout(typeCompliment, 55);
+            }
+        }
+        typeCompliment();
+    }
+
+    function stopComplimentTypewriter() {
+        if (complimentTypewriterTimeout) {
+            clearTimeout(complimentTypewriterTimeout);
+            complimentTypewriterTimeout = null;
+        }
+        complimentTypewriterEl.textContent = "";
+    }
+
+    function observePage5Typewriter() {
+        const page5 = document.getElementById("page5");
+        const observer = new MutationObserver(() => {
+            if (page5.classList.contains("active-page")) {
+                startComplimentTypewriter();
+            } else {
+                stopComplimentTypewriter();
+            }
+        });
+        observer.observe(page5, { attributes: true, attributeFilter: ["class"] });
+    }
+
+    document.addEventListener("DOMContentLoaded", observePage5Typewriter);
+    </script>
+
     <script>
       document.addEventListener("DOMContentLoaded", function() {
         const text = "Şifreyi Girip Siteye Ulaşabilirsin Aşkım❤️";
@@ -1199,33 +1302,49 @@ h2 {
 
         setInterval(checkPage9Visibility, 1000);
 
-        document.addEventListener("DOMContentLoaded", function () {
-            const lock = document.getElementById("lock");
-            const clickText = document.getElementById("click-text");
-            const loveMessage = document.getElementById("love-message");
-            const videoContainer = document.getElementById("video-container");
+    (function () {
+        const lock = document.getElementById("lock");
+        const clickText = document.getElementById("click-text");
+        const preparingMessage = document.getElementById("preparing-message");
+        const loveMessage = document.getElementById("love-message");
+        const videoContainer = document.getElementById("video-container");
+        const video = document.getElementById("myVideo7");
+        let unlocked = false;
 
-            lock.addEventListener("click", function () {
-                lock.style.display = "none";
-                clickText.style.display = "none";
+        lock.addEventListener("click", function () {
+          if (unlocked) return;
+          unlocked = true;
 
-                loveMessage.style.display = "block";
-                videoContainer.style.display = "block";
+          // Hide lock visually
+          lock.classList.add("hide");
 
-                document.getElementById("myVideo").play();
-            });
+          // Hide click text, show preparing message
+          clickText.style.display = "none";
+          preparingMessage.style.display = "block";
+
+          // After a short delay, show love message, then video
+          setTimeout(() => {
+            preparingMessage.style.display = "none";
+            loveMessage.style.display = "block";
+            setTimeout(() => {
+              loveMessage.style.display = "none";
+              videoContainer.style.display = "block";
+              if (video) video.play();
+            }, 1800);
+          }, 1500);
         });
-
+      })();
+      
         const button = document.getElementById('playButton');
         const music = document.getElementById('arkaplanMuzik');
 
         button.addEventListener('click', () => {
             if (music.paused) {
                 music.play();
-                button.innerText = "🎵 Müzik Çalıyor";
+                button.innerText = "Müzik Çalıyor";
             } else {
                 music.pause();
-                button.innerText = "▶️ Müziği Çal";
+                button.innerText = "Müziği Başlat";
             }
         });
 
