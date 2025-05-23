@@ -101,6 +101,8 @@
             90% { opacity: 0.7; }
             100% { transform: translateY(-115vh); opacity: 0; }
         }
+
+
         #password-screen {
             background-color: rgba(255, 228, 225, 0.95);
             padding: 30px 40px;
@@ -115,13 +117,17 @@
             transition: background-color 0.5s, box-shadow 0.5s;
             width: 90vw;
             max-width: 400px;
+
         }
         #password-screen h2 {
             color: #d81b60;
             margin-bottom: 20px;
             transition: color 0.5s;
-            font-size: 1.3em;
+            font-size: 1.1em;
+              animation: kalpAtisi 2s infinite ease-in-out; /* Başlık "kalp atışı" gibi büyüyecek ve küçülecek */
+
         }
+        
         #password-screen input {
             padding: 12px;
             margin-bottom: 20px;
@@ -133,6 +139,8 @@
             background-color: white;
             color: #5c3c3c;
             transition: background-color 0.5s, color 0.5s, border-color 0.5s;
+            animation: fadeInScale 1s cubic-bezier(0.23, 1, 0.32, 1);
+
         }
         #password-screen button {
             background-color: #d81b60;
@@ -145,6 +153,7 @@
             transition: background-color 0.3s;
             width: 100%;
             margin-bottom: 10px;
+            
         }
         #password-screen button:hover {
             background-color: #c2185b;
@@ -286,8 +295,8 @@
             color: #f8f8f2;
             border: 2px solid #6200ee;
         }
-        body.dark-theme #password-screen button { background-color: #6200ee; }
-        body.dark-theme #password-screen button:hover { background-color: #3700b3; }
+        body.dark-theme #password-screen button { background-color: hsl(311, 100%, 50%); }
+        body.dark-theme #password-screen button:hover { background-color: #00ffea; }
         body.dark-theme .main-content {
             background-color: #1e1e1e;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
@@ -751,12 +760,24 @@ h2 {
   padding: 6px 11px; 
   font-size: 1.0em; 
 }
-        
+
+
+@keyframes kalpAtisi {
+  0% { transform: scale(1); } 
+  50% { transform: scale(1.05); } 
+  100% { transform: scale(1); } 
+}
+
+@keyframes askiPariltisi {
+  0% { opacity: 0; } 
+  50% { opacity: 1; } 
+  100% { opacity: 0; } 
+}
+
     body { background: #ffe6f0; font-family: 'Comic Sans MS'; text-align: center; padding: 30px; }
     textarea { width: 90%; height: 120px; padding: 10px; border-radius: 10px; }
     button { padding: 10px 20px; margin-top: 10px; background: #ff66a3; color: white; border: none; border-radius: 10px; cursor: pointer; }
    
-
     
     </style>
 </head>
@@ -785,14 +806,18 @@ h2 {
         <div class="rising-heart rh20">💖</div>
     </div>
 
+    
     <div id="password-screen">
-        <h2><span class="heart-icon">💖</span> Bu Site İkimiz İçin Özel <span class="heart-icon">💖</span></h2>
-        <p>Şifreyi Öğrenmek İçin Telefondan Beni Ara Aşkım</p>
+        <h2>💖Bu Site İkimiz İçin Özel💖</h2>
+        <p id="typewriter-text"></p>
         <input type="password" id="password-input" placeholder="Şifre Girişi Yapınız">
         <button onclick="checkPassword()">Giriş Yap</button>
         <p id="error-message"></p>
     </div>
+    
 
+
+    
     <div class="main-content" id="main-content">
         <div id="page1" class="page active-page">
 <h1 style="font-size: 28px;">
@@ -842,7 +867,7 @@ h2 {
       <div id="hiddenMessage" class="hiddenMessage">Şunu Unutma Sevgilim Seninle Evlenip Bir Yuva Kuracağım,Kız Çocuğumuz Olup Ona Cici Elbiseler Alacağız.</div>
     </div>
   </div>
-        
+
           </div>
 
         
@@ -876,6 +901,20 @@ h2 {
             </div>
         </div>
 
+         <div id="page4" class="page">
+  <div class="page4-theme">
+    <div class="col-md-12 d-flex align-items-center justify-content-center">
+      <div id="gun-container"></div>
+    </div>
+
+    <div class="col-md-12 text-center mt-3">
+      <p id="relationship-days-text" class="lead"></p>
+    </div>
+    <div class="col-md-12 d-flex align-items-center justify-content-center">
+      <h3><span class="badge badge-warning"></span></h3>
+    </div>
+  </div>
+</div>
 
         <div id="page5" class="page">
         <div class="page5-theme">
@@ -933,21 +972,6 @@ h2 {
   </div>
 </div>
 
-<div id="page10" class="page">
-  <div id="wrapper">
-    <h2 id="question">Seni Her Gördüğümde Ki Halim;</h2> 
-
-    <div id="image-container" style="display: none;">
-      <img id="mainImage"
-           src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHNxbmtrdHdqMHcwdXNjbTQ4YWdwczI3N3RiOWFybDk3Z3U2c2U2MiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/26FLdmIp6wJr91JAI/giphy.gif"
-           alt="Thinking GIF">
-    </div>
-
-    <div id="button-area"> 
-      <button id="confirm-button" class="action-button">Butona Bas Aşk</button> 
-    </div>
-  </div>
-</div>
 
 <div id="page9" class="page"> 
   <div class="page9-theme" style="text-align: center; padding: 30px;">
@@ -966,22 +990,23 @@ h2 {
   </div>
 </div>
 
-  <div id="page4" class="page">
-  <div class="page4-theme">
-    <div class="col-md-12 d-flex align-items-center justify-content-center">
-      <div id="gun-container"></div>
+<div id="page10" class="page">
+  <div id="wrapper">
+    <h2 id="question">Seni Her Gördüğümde Ki Halim;</h2> 
+
+    <div id="image-container" style="display: none;">
+      <img id="mainImage"
+           src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHNxbmtrdHdqMHcwdXNjbTQ4YWdwczI3N3RiOWFybDk3Z3U2c2U2MiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/26FLdmIp6wJr91JAI/giphy.gif"
+           alt="Thinking GIF">
     </div>
 
-    <div class="col-md-12 text-center mt-3">
-      <p id="relationship-days-text" class="lead"></p>
-    </div>
-    <div class="col-md-12 d-flex align-items-center justify-content-center">
-      <h3><span class="badge badge-warning"></span></h3>
+    <div id="button-area"> 
+      <button id="confirm-button" class="action-button">Butona Bas Aşk</button> 
     </div>
   </div>
 </div>
 
-
+ 
 
 
           <div class="pagination-buttons">
@@ -1024,6 +1049,22 @@ h2 {
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
     
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        const text = "Şifreyi Girip Siteye Ulaşabilirsin Aşkım❤️";
+        const el = document.getElementById("typewriter-text");
+        let i = 0;
+        function type() {
+          if (i <= text.length) {
+            el.textContent = text.slice(0, i);
+            i++;
+            setTimeout(type, 60);
+          }
+        }
+        type();
+      });
+    </script>
+
     <script>
 
  document.addEventListener("DOMContentLoaded", () => {
