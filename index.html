@@ -672,18 +672,87 @@
             .side-heart { font-size: 1.7em; }
         }
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #f8f8f8; /* Daha yumuşak bir beyaz */
+    font-family: 'Poppins', sans-serif; /* Daha modern bir font */
+}
+
+#image-container { /* 'gif' yerine daha genel bir isim */
+    height: 100%;
+    width: 100%;
+    cursor: zoom-in;
+    overflow: hidden; /* Taşmayı engellemek için */
+    border-radius: 15px; /* Hafif yuvarlak köşeler */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Hafif gölge */
+}
+
+#image-container:active {
+    transform: scale(1.1); /* Daha yumuşak bir zoom efekti */
+    transition: transform 0.2s ease-out; /* Geçiş animasyonu */
+}
+
+h2 {
+    text-align: center;
+    font-size: 2em; /* Biraz daha büyük başlık */
+    color: #ff6b6b; /* Canlı bir kırmızı tonu */
+    margin: 25px 0; /* Boşluk artırıldı */
+    letter-spacing: 1px; /* Harf aralığı */
+}
+
+#button-area { /* 'btn-group' yerine daha açıklayıcı bir isim */
+    width: 100%;
+    height: 60px; /* Buton yüksekliği artırıldı */
+    display: flex;
+    justify-content: center;
+    margin-top: 60px; /* Boşluk artırıldı */
+    gap: 40px; /* Butonlar arası boşluk */
+}
+
+.action-button { /* 'button' yerine daha anlamlı bir sınıf adı */
+    position: relative; /* Absolute kaldırıldı, flexbox ile konumlandırma */
+    width: 220px; /* Buton genişliği artırıldı */
+    height: inherit;
+    color: white;
+    font-size: 1.3em; /* Font boyutu artırıldı */
+    border-radius: 35px; /* Daha yuvarlak butonlar */
+    outline: none;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Gelişmiş gölge */
+    border: none; /* Kenarlık kaldırıldı */
+    transition: all 0.3s ease; /* Tüm geçişler için animasyon */
+}
+
+.action-button:hover {
+    transform: translateY(-3px); /* Hover'da hafif yukarı hareket */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Hover'da gölge artırıldı */
+}
+
+#confirm-button { /* İlk buton için spesifik isim */
+    background: #ff6b6b;
+}
+
+        
     body { background: #ffe6f0; font-family: 'Comic Sans MS'; text-align: center; padding: 30px; }
     textarea { width: 90%; height: 120px; padding: 10px; border-radius: 10px; }
     button { padding: 10px 20px; margin-top: 10px; background: #ff66a3; color: white; border: none; border-radius: 10px; cursor: pointer; }
    
 
+    
     </style>
 </head>
 <body>
-
-
-
 
    <div class="heart-fall-container" id="heart-container">
         <div class="rising-heart rh1">❤️</div>
@@ -856,6 +925,22 @@
   </div>
 </div>
 
+<div id="page10" class="page">
+  <div id="wrapper">
+    <h2 id="question">Seni Her Gördüğümde Ki Halim;</h2> 
+
+    <div id="image-container" style="display: none;">
+      <img id="mainImage"
+           src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHNxbmtrdHdqMHcwdXNjbTQ4YWdwczI3N3RiOWFybDk3Z3U2c2U2MiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/26FLdmIp6wJr91JAI/giphy.gif"
+           alt="Thinking GIF">
+    </div>
+
+    <div id="button-area"> 
+      <button id="confirm-button" class="action-button">Butona Bas Aşk</button> 
+    </div>
+  </div>
+</div>
+
 <div id="page9" class="page"> 
   <div class="page9-theme" style="text-align: center; padding: 30px;">
     <h1>💌 Doğum Günü Mesajı</h1>
@@ -901,6 +986,7 @@
             <button id="btn-page7">7</button>
             <button id="btn-page8">8</button>
             <button id="btn-page9">9</button>
+            <button id="btn-page10">10</button>
 
         </div>
     
@@ -932,6 +1018,21 @@
     
     <script>
 
+ document.addEventListener("DOMContentLoaded", () => {
+      const questionText  = document.getElementById("question");
+      const imgContainer  = document.getElementById("image-container");
+      const mainImage     = document.getElementById("mainImage");
+      const confirmButton = document.getElementById("confirm-button");
+
+      confirmButton.addEventListener("click", () => {
+        questionText.textContent = "Bu Biçimdeyim İçim Dışım";
+
+        mainImage.src = "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHNxbmtrdHdqMHcwdXNjbTQ4YWdwczI3N3RiOWFybDk3Z3U2c2U2MiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/26FLdmIp6wJr91JAI/giphy.gif";
+        imgContainer.style.display = "block";
+
+        confirmButton.style.display = "none";
+      });
+    });
 
     function showMessage() {
             var hidden = document.getElementById('hiddenMessage');
@@ -1012,7 +1113,7 @@
     function updateCountdown() {
       const diff = unlockDate - new Date();
       if (diff <= 0) {
-        fetchAndShowMessage();  // sadece buradan çağırıyoruz
+        fetchAndShowMessage();  
       } else {
         const days    = Math.floor(diff / 86400000);
         const hours   = Math.floor((diff % 86400000) / 3600000);
@@ -1199,6 +1300,7 @@
         document.getElementById('btn-page7').addEventListener('click', () => showPage('page7'));
         document.getElementById('btn-page8').addEventListener('click', () => showPage('page8'));
         document.getElementById('btn-page9').addEventListener('click', () => showPage('page9'));
+        document.getElementById('btn-page10').addEventListener('click', () => showPage('page10'));
 
         if (document.getElementById('main-content').style.display === 'block') {
             showPage('page1');
