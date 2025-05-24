@@ -823,7 +823,56 @@ h2 {
         opacity: 0;
         pointer-events: none;
         transition: opacity 0.7s;
-      }
+    }
+
+
+
+     .scene {
+    perspective: 800px;
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .globe {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform-style: preserve-3d;
+    animation: rotate 20s linear infinite;
+  }
+
+  .photo {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%; /* Yuvarlak yapmak için değiştirildi */
+    object-fit: cover;
+    transition: transform 0.3s;
+    cursor: pointer;
+    border: 4px solid #e91e63; /* İsteğe bağlı: güzel bir kenarlık */
+    box-shadow: 0 4px 12px rgba(233,30,99,0.15); /* Hafif gölge */
+  }
+
+  .message-box {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.8);
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: #fff;
+    display: none;
+    z-index: 999;
+  }
+
+  @keyframes rotate {
+    from { transform: rotateY(0deg); }
+    to { transform: rotateY(360deg); }
+  }
+
 
     body { background: #ffe6f0; font-family: 'Comic Sans MS'; text-align: center; padding: 30px; }
     textarea { width: 90%; height: 120px; padding: 10px; border-radius: 10px; }
@@ -1067,8 +1116,27 @@ h2 {
   </div>
 </div>
 
- 
+<div id="page11" class="page">
+    <h2 style="text-align: center; margin-bottom: 25px;">Benim 🌍'm Sensin Aşkım</h2>
+    <div style="height: 100px;"></div>
 
+    <div class="scene">
+        <div class="globe" id="globe">
+            <img src="https://cdn.glitch.global/3c640796-faaa-4a53-9463-dff9666e60cc/047a6a1d-f7b7-4316-b349-17f47a67c65b.image.png?v=1748093513446" class="photo" data-message="İlk Şampiyonluğumuzu Kutladığımız Gün ♥">
+            <img src="https://cdn.glitch.global/3c640796-faaa-4a53-9463-dff9666e60cc/52444084-6953-46a5-9d4a-40f9cd910972.image.png?v=1748093295272" class="photo" data-message="Gözlerindeki Işık ❤️">
+            <img src="https://cdn.glitch.global/3c640796-faaa-4a53-9463-dff9666e60cc/142fe51f-67ca-4c98-bbf3-a62c922fc7ed.image.png?v=1748125510480" class="photo" data-message="Bak Hele Şu Güzelliğe Bak Ya ❤️">
+            <img src="https://cdn.glitch.global/3c640796-faaa-4a53-9463-dff9666e60cc/51af6263-d135-4fcb-8a29-c4030d0e1be7.image.png?v=1748090983708" class="photo" data-message="İyi Günde Kötü Günde Her Zaman 🤍">
+            <img src="https://cdn.glitch.global/3c640796-faaa-4a53-9463-dff9666e60cc/c6deae83-a198-4c6c-ac48-4ba2e675b1a6.image.png?v=1748120150169" class="photo" data-message="Atam'ın Huzuruna Sevdiğimle Geldiğim An ❤️">
+            <img src="https://cdn.glitch.global/3c640796-faaa-4a53-9463-dff9666e60cc/9c6b890e-9bb4-4abf-a49a-0732a7236a3e.image.png?v=1748090812146" class="photo" data-message="Seninle Her An Özel ❤️">
+            <img src="https://cdn.glitch.global/3c640796-faaa-4a53-9463-dff9666e60cc/df06df25-52d3-44cf-acdd-768f15c288e9.image.png?v=1748090756457" class="photo" data-message="Her Şeyin En Güzeli Sensin ❤️">
+            <img src="https://cdn.glitch.global/3c640796-faaa-4a53-9463-dff9666e60cc/4f4d3dd4-59b5-4ef9-9a5c-71ca79a4dc94.image.png?v=1748089276154" class="photo" data-message="İyi Ki Benimsin ❤️">
+        </div>
+    </div>
+
+    <div id="photo-caption" style="margin-top: 30px; text-align: center; font-size: 1.5em; color: #e91e63; min-height: 2em;">
+        <span id="photo-caption-text" style="display: inline-block;"></span>
+    </div>
+    </div>
 
           <div class="pagination-buttons">
             <button id="btn-page1" class="active">1</button>
@@ -1081,6 +1149,7 @@ h2 {
             <button id="btn-page8">8</button>
             <button id="btn-page9">9</button>
             <button id="btn-page10">10</button>
+            <button id="btn-page11">11</button>
 
         </div>
     
@@ -1109,6 +1178,60 @@ h2 {
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const photos = document.querySelectorAll("#page11 .photo");
+        const captionText = document.getElementById("photo-caption-text");
+        let typewriterTimeout = null;
+
+        function typeWriter(text, i = 0) {
+            if (!captionText) return;
+            if (i === 0) captionText.textContent = "";
+            if (i < text.length) {
+                captionText.textContent += text.charAt(i);
+                typewriterTimeout = setTimeout(() => typeWriter(text, i + 1), 35);
+            }
+        }
+
+        function clearTypewriter() {
+            if (typewriterTimeout) clearTimeout(typewriterTimeout);
+        }
+
+        photos.forEach(photo => {
+            photo.addEventListener("click", function() {
+                clearTypewriter();
+                const msg = photo.getAttribute("data-message");
+                typeWriter(msg);
+            });
+        });
+
+        function handlePage11Typewriter() {
+            const page11 = document.getElementById("page11");
+            if (page11.classList.contains("active-page")) {
+                clearTypewriter();
+                typeWriter("Fotoğrafın Üstüne Tıklayınca Açıklamalar Burada Gözükecek Aşkım.");
+            } else {
+                clearTypewriter();
+                if (captionText) captionText.textContent = "";
+            }
+        }
+
+        const page11 = document.getElementById("page11");
+        const observer = new MutationObserver(handlePage11Typewriter);
+        observer.observe(page11, { attributes: true, attributeFilter: ["class"] });
+
+        const btnPage11 = document.getElementById("btn-page11");
+        if (btnPage11) {
+            btnPage11.addEventListener("click", function() {
+                clearTypewriter();
+                typeWriter("Fotoğrafın Üstüne Tıklayınca Açıklamalar Burada Gözükecek Aşkım.");
+            });
+        }
+
+        if (captionText) captionText.textContent = "";
+    });
+    </script>
 
     <script>
     const complimentTypewriterText = "Aşkım Sadece Adını Yazınca Çalışır Burası, Her Seferinde Farklı İltifat Eder ❤️";
@@ -1151,6 +1274,38 @@ h2 {
 
     document.addEventListener("DOMContentLoaded", observePage5Typewriter);
     </script>
+
+    
+    
+  <script>
+  const globe = document.getElementById("globe");
+  const photos = document.querySelectorAll(".photo");
+  const messageBox = document.getElementById("message-box");
+
+  const count = photos.length;
+  const radius = 120;
+
+  photos.forEach((photo, i) => {
+    const angle = (i / count) * 2 * Math.PI;
+    const x = radius * Math.cos(angle);
+    const z = radius * Math.sin(angle);
+    const y = (i % 2 === 0) ? -40 : 40;
+
+    photo.style.transform = `translate3d(${x}px, ${y}px, ${z}px)`;
+  });
+
+  photos.forEach(photo => {
+    photo.addEventListener("click", () => {
+      const message = photo.dataset.message;
+      messageBox.textContent = message;
+      messageBox.style.display = "block";
+
+      setTimeout(() => {
+        messageBox.style.display = "none";
+      }, 5000);
+    });
+  });
+</script>
 
     <script>
       document.addEventListener("DOMContentLoaded", function() {
@@ -1315,14 +1470,11 @@ h2 {
           if (unlocked) return;
           unlocked = true;
 
-          // Hide lock visually
           lock.classList.add("hide");
 
-          // Hide click text, show preparing message
           clickText.style.display = "none";
           preparingMessage.style.display = "block";
 
-          // After a short delay, show love message, then video
           setTimeout(() => {
             preparingMessage.style.display = "none";
             loveMessage.style.display = "block";
@@ -1469,6 +1621,7 @@ h2 {
         document.getElementById('btn-page8').addEventListener('click', () => showPage('page8'));
         document.getElementById('btn-page9').addEventListener('click', () => showPage('page9'));
         document.getElementById('btn-page10').addEventListener('click', () => showPage('page10'));
+        document.getElementById('btn-page11').addEventListener('click', () => showPage('page11'));
 
         if (document.getElementById('main-content').style.display === 'block') {
             showPage('page1');
