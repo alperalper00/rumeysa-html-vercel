@@ -164,14 +164,15 @@
             font-size: 0.9em;
             min-height: 1.2em;
         }
+        
         .main-content {
             display: none;
             background-color: #fff0f5;
             padding: 20px 10px;
             border-radius: 20px;
             box-shadow: 0 10px 20px rgba(216, 27, 96, 0.2);
-            max-width: 850px;
-            margin: 40px auto;
+            max-width: 1200px;
+            margin: 20px auto;
             text-align: center;
             position: relative;
             overflow: auto;
@@ -181,6 +182,15 @@
             width: 98vw;
         }
         
+        @media (max-width: 900px) {
+    .main-content {
+        max-width: 99vw;
+        padding: 18px 4vw;
+        min-height: 350px;
+        font-size: 1em;
+    }
+}
+
         img {
             max-width: 100%;
             height: auto;
@@ -874,6 +884,47 @@ h2 {
   }
 
 
+
+ * { margin: 0; padding: 0; box-sizing: border-box; }
+
+ .wish-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 1.6rem;
+  font-family: 'Courier New', monospace;
+  opacity: 0;
+  animation: fadeIn 3s ease 3s forwards;
+  text-shadow: 0 0 10px white;
+  z-index: 1;
+  text-align: center;
+  white-space: nowrap; 
+}
+
+  #page12 {
+  position: relative;
+  width: 50vw; 
+  height: 45vh;
+  background: radial-gradient(ellipse at center, #000 0%, #0b0c10 100%);
+  overflow: hidden;
+  margin: 0 auto; 
+  border-radius: 10px; 
+}
+
+    canvas#skyCanvas {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+
     body { background: #ffe6f0; font-family: 'Comic Sans MS'; text-align: center; padding: 30px; }
     textarea { width: 90%; height: 120px; padding: 10px; border-radius: 10px; }
     button { padding: 10px 20px; margin-top: 10px; background: #ff66a3; color: white; border: none; border-radius: 10px; cursor: pointer; }
@@ -1116,6 +1167,12 @@ h2 {
   </div>
 </div>
 
+<div id="page12" class="page">
+  <canvas id="skyCanvas"></canvas>
+  <div class="wish-text">Benim dileğim hep sendin... 🌠</div>
+</div>
+
+
 <div id="page11" class="page">
     <h2 style="text-align: center; margin-bottom: 25px;">Benim 🌍'm Sensin Aşkım</h2>
     <div style="height: 100px;"></div>
@@ -1136,7 +1193,9 @@ h2 {
     <div id="photo-caption" style="margin-top: 30px; text-align: center; font-size: 1.5em; color: #e91e63; min-height: 2em;">
         <span id="photo-caption-text" style="display: inline-block;"></span>
     </div>
-    </div>
+
+</div>
+
 
           <div class="pagination-buttons">
             <button id="btn-page1" class="active">1</button>
@@ -1150,6 +1209,7 @@ h2 {
             <button id="btn-page9">9</button>
             <button id="btn-page10">10</button>
             <button id="btn-page11">11</button>
+            <button id="btn-page12">12</button>
 
         </div>
     
@@ -1178,6 +1238,90 @@ h2 {
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+
+  <script>
+  const canvas = document.getElementById("skyCanvas");
+  const ctx = canvas.getContext("2d");
+
+  let w = canvas.width = window.innerWidth;
+  let h = canvas.height = window.innerHeight;
+
+  window.addEventListener("resize", () => {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+  });
+
+  const staticStars = Array.from({ length: 150 }, () => ({
+    x: Math.random() * w,
+    y: Math.random() * h,
+    radius: Math.random() * 1.2,
+    alpha: Math.random()
+  }));
+
+  class ShootingStar {
+    constructor() {
+      this.reset();
+    }
+
+    reset() {
+      this.x = Math.random() * w;
+      this.y = Math.random() * h * 0.4;
+      this.len = Math.random() * 100 + 80;
+      this.speed = Math.random() * 6 + 4;
+      this.angle = Math.PI / 3;
+      this.alpha = 1;
+    }
+
+    update() {
+      this.x += this.speed * Math.cos(this.angle);
+      this.y += this.speed * Math.sin(this.angle);
+      this.alpha -= 0.01;
+
+      if (this.alpha <= 0) this.reset();
+    }
+
+    draw() {
+      const endX = this.x - this.len * Math.cos(this.angle);
+      const endY = this.y - this.len * Math.sin(this.angle);
+
+      const gradient = ctx.createLinearGradient(this.x, this.y, endX, endY);
+      gradient.addColorStop(0, `rgba(255,255,255,${this.alpha})`);
+      gradient.addColorStop(1, `rgba(255,255,255,0)`);
+
+      ctx.beginPath();
+      ctx.moveTo(this.x, this.y);
+      ctx.lineTo(endX, endY);
+      ctx.strokeStyle = gradient;
+      ctx.lineWidth = 2;
+      ctx.stroke();
+    }
+  }
+
+  const shootingStars = [new ShootingStar(), new ShootingStar()];
+
+  function drawStaticStars() {
+    for (let star of staticStars) {
+      ctx.beginPath();
+      ctx.arc(star.x, star.y, star.radius, 0, 2 * Math.PI);
+      ctx.fillStyle = `rgba(255,255,255,${star.alpha})`;
+      ctx.fill();
+    }
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, w, h);
+    drawStaticStars();
+
+    for (let star of shootingStars) {
+      star.update();
+      star.draw();
+    }
+
+    requestAnimationFrame(animate);
+  }
+
+  animate(); 
+</script>
 
     <script>
     document.addEventListener("DOMContentLoaded", function() {
@@ -1622,6 +1766,7 @@ h2 {
         document.getElementById('btn-page9').addEventListener('click', () => showPage('page9'));
         document.getElementById('btn-page10').addEventListener('click', () => showPage('page10'));
         document.getElementById('btn-page11').addEventListener('click', () => showPage('page11'));
+        document.getElementById('btn-page12').addEventListener('click', () => showPage('page12'));
 
         if (document.getElementById('main-content').style.display === 'block') {
             showPage('page1');
