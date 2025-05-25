@@ -165,21 +165,33 @@
             min-height: 1.2em;
         }
         .main-content {
-            display: none;
-            background-color: #fff0f5;
-            padding: 20px 10px;
-            border-radius: 20px;
-            box-shadow: 0 10px 20px rgba(216, 27, 96, 0.2);
-            max-width: 850px;
-            margin: 40px auto;
-            text-align: center;
-            position: relative;
-            overflow: auto;
-            max-height: 90vh;
-            z-index: 1;
-            transition: background-color 0.5s, box-shadow 0.5s;
-            width: 98vw;
-        }
+  display: none;
+  background-color: #fff0f5;
+  padding: 20px 10px;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(216, 27, 96, 0.2);
+  max-width: 1000px;
+  margin: 40px auto;
+  text-align: center;
+  position: relative;
+  overflow: auto;
+  max-height: 90vh;
+  z-index: 1;
+  transition: background-color 0.5s, box-shadow 0.5s;
+  width: 98vw; /* masaüstü için uygun */
+}
+
+/* Küçük ekranlar (telefonlar) için düzeltilmiş hali */
+@media (max-width: 600px) {
+  .main-content {
+    padding: 12px 8px;    /* İçerik kenar boşluklarını azaltıyoruz */
+    width:  ninety 
+    width: 95vw;          /* Yüzde olarak biraz küçülterek yanlarda boşluk bırak */
+    margin: 20px auto;    /* Üst ve alt boşluğu biraz daralt */
+    border-radius: 16px;  /* Köşe yuvarlaklığını hafif küçültmek daha şık olabilir */
+    max-height: 85vh;     /* Yüksekliği biraz daha esnetebilirsiniz */
+  }
+}
         
         img {
             max-width: 100%;
