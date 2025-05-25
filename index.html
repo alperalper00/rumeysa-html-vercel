@@ -889,41 +889,44 @@ h2 {
  * { margin: 0; padding: 0; box-sizing: border-box; }
 
  .wish-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
-  font-size: 1.6rem;
-  font-family: 'Courier New', monospace;
-  opacity: 0;
-  animation: fadeIn 3s ease 3s forwards;
-  text-shadow: 0 0 10px white;
-  z-index: 1;
-  text-align: center;
-  white-space: nowrap; 
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 1.6rem;
+    font-family: 'Courier New', monospace;
+    opacity: 0;
+    animation: fadeIn 3s ease 3s forwards;
+    text-shadow: 0 0 10px white;
+    z-index: 1;
+    text-align: center;
+    white-space: nowrap; 
 }
 
-  #page12 {
-  position: relative;
-  width: 50vw; 
-  height: 45vh;
-  background: radial-gradient(ellipse at center, #000 0%, #0b0c10 100%);
-  overflow: hidden;
-  margin: 0 auto; 
-  border-radius: 10px; 
+    #page12 {
+    position: relative;
+    width: 57vw;   /* Eskiden 50vw idi, genişletildi */
+    height: 65vh;  /* Eskiden 45vh idi, daha yüksek */
+    background: radial-gradient(ellipse at center, #000 0%, #0b0c10 100%);
+    overflow: hidden;
+    margin: 0 auto; 
+    border-radius: 18px; /* Hafif daha büyük kenar yuvarlatma */
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4); /* Hafif gölge */
 }
 
-    canvas#skyCanvas {
-      position: absolute;
-      width: 120%;
-      height: 120%;
-      display: block;
-    }
+        canvas#skyCanvas {
+            position: absolute;
+            width: 120%;
+            height: 120%;
+            display: block;
+            left: -10%;
+            top: -10%;
+        }
 
-    @keyframes fadeIn {
-      to { opacity: 1; }
-    }
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
 
 
     body { background: #ffe6f0; font-family: 'Comic Sans MS'; text-align: center; padding: 30px; }
